@@ -1,0 +1,48 @@
+Act as a Principal Frontend Engineer and UI/UX Designer specializing in interactive, high-converting portfolio websites for Senior Data Analysts and Analytics Engineers.
+
+I need a detailed, production-ready specification and implementation guide to transform my static HTML portfolio into a modern, highly interactive, and visually stunning web application. 
+
+### Core Tech Stack:
+- Vanilla HTML5 / CSS3 (using modern features: CSS Grid, Flexbox, CSS Variables, Glassmorphism, CSS Animations)
+- Vanilla JavaScript (ES6+, zero heavy external framework dependencies like React or Vue so it runs smoothly on GitHub Pages)
+- Lightweight Libraries (Allowed): Lucide Icons (CDN), Chart.js (CDN for interactive charts), AOS / ScrollReveal.js, or Canvas-Confetti.
+
+---
+
+### Key Requirements & Functional Specifications:
+
+1. Visual Theme & Layout Architecture:
+   - Layout: Modern split-screen / sidebar layout on desktop (Sticky Left Profile Sidebar + Scrollable Right Content Area), collapsing to a clean single column on mobile.
+   - Design Aesthetic: Modern Dark Mode with subtle blue/slate glowing accents, glassmorphism card components (`backdrop-filter: blur()`), light grid pattern background, and smooth hover micro-interactions.
+   - Theme Toggle: Interactive Dark/Light Mode switch with local storage persistence.
+
+2. Interactive Left Sidebar / Profile Card:
+   - Profile Portrait: Circular avatar with a subtle pulsing dynamic gradient ring around it.
+   - Contact & Social Quick-Links: Clickable icon badges for LinkedIn, GitHub, WhatsApp, and Email.
+   - Interactive Location Badge: Clickable "Weimar, Germany" pill tag that toggles an interactive modal showing a light vector map highlight of Germany/EU mobility.
+   - Dynamic Time Counter: Live updating digital clock displaying CEST time (or local time offset).
+
+3. Creative & Interactive Portfolio Features:
+
+   A. Live Dynamic Data Dashboards (Replacing Static Project Repos):
+      - Integrate real interactive JavaScript charts using Chart.js inside the Project cards:
+        - Project 1 (Healthcare): Interactive line/bar chart displaying dynamic ER Wait Time vs. Patient Influx with live filter buttons (e.g., "Peak Hours", "Off-Peak", "Staffed").
+        - Project 2 (Marketing KPI): Interactive donut/stacked chart showing multi-platform campaign performance (Google, Meta, Datorama).
+      - Include interactive filter tags above the projects section (e.g., [All], [Power BI], [Python/ETL], [Machine Learning], [Governance]) that dynamically animate and filter project cards without page reloads.
+
+   B. Interactive Skill Competency Radar / Progress Indicators:
+      - Replace static markdown tables with interactive, expandable skill cards or an interactive Chart.js Radar Chart comparing technical depth across BI, Data Engineering, Governance, and Automation.
+      - Add interactive tooltips when hovering over skills (e.g., hovering over "DAX" displays "Advanced: Star Schema, Time Intelligence, Dynamic RLS").
+
+   C. Interactive Career Timeline:
+      - Vertical animated timeline where nodes glow on scroll into view.
+      - Each career node is clickable/expandable, revealing key metrics, achieved SOPs, and quantifiable business outcomes.
+
+   D. Dynamic ATS Resume & Contact Generator:
+      - "Download Interactive Resume" button with a choice dropdown (e.g., PDF Export, One-Page Executive Summary, ATS Plain Text).
+      - Interactive Contact Section with a working client-side modal or form (Formspree/EmailJS integration) for direct recruiter messaging.
+
+---
+
+### Output Expected:
+Provide a complete, fully functional, beautifully styled single-file `index.html` (containing inline CSS in `<style>` and JavaScript in `<script>`) implementing all these interactive elements, fully responsive and ready to host on GitHub Pages.
