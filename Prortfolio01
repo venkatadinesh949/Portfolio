@@ -1,48 +1,770 @@
-Act as a Principal Frontend Engineer and UI/UX Designer specializing in interactive, high-converting portfolio websites for Senior Data Analysts and Analytics Engineers.
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dinesh A V — Senior Data Analyst, Business Intelligence & Reporting Specialist. Power BI, SQL, Python, DAX, ETL and automation.">
+  <meta name="theme-color" content="#07111f">
+  <title>Dinesh A V | Data Analyst · BI · Analytics Engineering</title>
 
-I need a detailed, production-ready specification and implementation guide to transform my static HTML portfolio into a modern, highly interactive, and visually stunning web application. 
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
 
-### Core Tech Stack:
-- Vanilla HTML5 / CSS3 (using modern features: CSS Grid, Flexbox, CSS Variables, Glassmorphism, CSS Animations)
-- Vanilla JavaScript (ES6+, zero heavy external framework dependencies like React or Vue so it runs smoothly on GitHub Pages)
-- Lightweight Libraries (Allowed): Lucide Icons (CDN), Chart.js (CDN for interactive charts), AOS / ScrollReveal.js, or Canvas-Confetti.
+  <style>
+    :root {
+      --bg:#06101c; --bg-2:#0a1625; --surface:rgba(12,25,41,.72);
+      --surface-solid:#0d1b2c; --surface-soft:rgba(21,39,61,.58);
+      --text:#edf5ff; --muted:#91a4bb; --line:rgba(151,177,210,.16);
+      --blue:#55a1ff; --cyan:#68d9ff; --violet:#8d7dff;
+      --success:#56d6a2; --warning:#ffc96b; --danger:#ff7892;
+      --shadow:0 24px 70px rgba(0,0,0,.35); --radius:22px;
+      --sidebar:340px; --max:1500px;
+    }
+    html[data-theme="light"] {
+      --bg:#edf3f9; --bg-2:#f7fbff; --surface:rgba(255,255,255,.78);
+      --surface-solid:#fff; --surface-soft:rgba(238,245,253,.82);
+      --text:#102035; --muted:#5c7088; --line:rgba(45,74,107,.14);
+      --blue:#1769dc; --cyan:#008fbc; --violet:#6654e8;
+      --shadow:0 20px 55px rgba(37,62,92,.14);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; color:var(--text); font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:
+        radial-gradient(circle at 20% 10%,rgba(85,161,255,.11),transparent 28rem),
+        radial-gradient(circle at 90% 40%,rgba(104,217,255,.07),transparent 25rem),
+        linear-gradient(135deg,var(--bg),var(--bg-2));
+      line-height:1.65; overflow-x:hidden;
+    }
+    body::before{
+      content:""; position:fixed; inset:0; pointer-events:none; opacity:.38; z-index:-1;
+      background-image:linear-gradient(rgba(116,154,201,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(116,154,201,.07) 1px,transparent 1px);
+      background-size:42px 42px; mask-image:linear-gradient(to bottom,#000,transparent 85%);
+    }
+    a{color:inherit;text-decoration:none} button,input,textarea,select{font:inherit}
+    button{cursor:pointer}
+    .app{width:min(var(--max),100%);margin:auto;display:grid;grid-template-columns:var(--sidebar) minmax(0,1fr);min-height:100vh}
+    .sidebar{
+      position:sticky; top:0; height:100vh; padding:34px 25px; border-right:1px solid var(--line);
+      background:linear-gradient(180deg,rgba(5,14,25,.78),rgba(7,17,29,.46)); backdrop-filter:blur(22px);
+      display:flex; flex-direction:column; justify-content:space-between;
+    }
+    html[data-theme="light"] .sidebar{background:rgba(246,250,255,.75)}
+    .brand{font-weight:900;letter-spacing:-.04em;font-size:1.12rem}
+    .brand span{color:var(--blue)}
+    .portrait-wrap{width:176px;height:176px;margin:32px auto 20px;position:relative;display:grid;place-items:center}
+    .portrait-wrap::before,.portrait-wrap::after{
+      content:"";position:absolute;inset:-7px;border-radius:50%;
+      background:conic-gradient(from 0deg,var(--blue),var(--cyan),var(--violet),var(--blue));
+      animation:spin 6s linear infinite;opacity:.9
+    }
+    .portrait-wrap::after{inset:-12px;filter:blur(14px);opacity:.27;animation:spin 8s linear reverse infinite}
+    .portrait{position:relative;z-index:2;width:164px;height:164px;border-radius:50%;object-fit:cover;border:5px solid var(--surface-solid);box-shadow:0 0 0 1px var(--line)}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .identity{text-align:center}
+    .identity h1{font-size:1.65rem;line-height:1.1;margin:0;letter-spacing:-.04em}
+    .identity p{margin:8px 0;color:var(--muted);font-size:.9rem}
+    .location{
+      display:inline-flex;align-items:center;gap:7px;margin-top:12px;padding:8px 12px;border:1px solid var(--line);
+      border-radius:999px;background:var(--surface-soft);color:var(--text);font-size:.78rem;font-weight:700;
+      transition:.2s; box-shadow:inset 0 1px rgba(255,255,255,.04)
+    }
+    .location:hover{transform:translateY(-2px);border-color:rgba(85,161,255,.45);box-shadow:0 8px 28px rgba(85,161,255,.13)}
+    .quick-links{display:flex;justify-content:center;gap:10px;margin:20px 0}
+    .icon-btn{
+      width:39px;height:39px;border-radius:12px;border:1px solid var(--line);background:var(--surface-soft);color:var(--muted);
+      display:grid;place-items:center;transition:.2s
+    }
+    .icon-btn:hover{color:var(--text);transform:translateY(-3px);border-color:rgba(85,161,255,.45);box-shadow:0 9px 24px rgba(0,0,0,.14)}
+    .clock{
+      margin-top:18px;padding:13px;border:1px solid var(--line);border-radius:15px;background:var(--surface-soft);
+      text-align:center
+    }
+    .clock small{display:block;color:var(--muted);font-size:.67rem;text-transform:uppercase;letter-spacing:.13em}
+    #clock{font-variant-numeric:tabular-nums;font-size:1.25rem;font-weight:800;letter-spacing:.05em}
+    .side-bottom{color:var(--muted);font-size:.72rem;text-align:center}
+    .availability{display:inline-flex;align-items:center;gap:7px;margin-bottom:8px}
+    .dot{width:7px;height:7px;background:var(--success);border-radius:50%;box-shadow:0 0 14px var(--success);animation:pulse 1.8s infinite}
+    @keyframes pulse{50%{opacity:.4;transform:scale(.75)}}
+    .content{min-width:0}
+    .topbar{
+      position:sticky;top:0;z-index:15;height:74px;padding:0 34px;border-bottom:1px solid var(--line);
+      background:rgba(6,16,28,.68);backdrop-filter:blur(20px);display:flex;align-items:center;justify-content:space-between
+    }
+    html[data-theme="light"] .topbar{background:rgba(247,251,255,.78)}
+    .nav{display:flex;gap:24px;font-size:.78rem;font-weight:700;color:var(--muted)}
+    .nav a{transition:.2s}.nav a:hover,.nav a.active{color:var(--text)}
+    .theme-toggle{border:1px solid var(--line);background:var(--surface-soft);color:var(--text);width:42px;height:42px;border-radius:12px;display:grid;place-items:center}
+    section{padding:92px 45px;border-bottom:1px solid var(--line)}
+    .hero{min-height:calc(100vh - 74px);display:flex;align-items:center;position:relative;overflow:hidden}
+    .hero::after{content:"";position:absolute;right:-160px;top:10%;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(85,161,255,.18),transparent 68%);pointer-events:none}
+    .eyebrow{color:var(--blue);font-size:.68rem;font-weight:900;letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px}
+    .hero h2{font-size:clamp(2.8rem,6.2vw,6.2rem);line-height:.96;letter-spacing:-.075em;max-width:900px;margin:0}
+    .hero h2 span{background:linear-gradient(90deg,var(--blue),var(--cyan),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .hero .lead{font-size:1.05rem;color:var(--muted);max-width:720px;margin:28px 0}
+    .hero-actions{display:flex;gap:11px;flex-wrap:wrap}
+    .btn{
+      display:inline-flex;align-items:center;gap:8px;padding:12px 16px;border-radius:12px;border:1px solid var(--line);
+      background:var(--surface-soft);color:var(--text);font-weight:800;font-size:.82rem;transition:.2s
+    }
+    .btn:hover{transform:translateY(-3px);border-color:rgba(85,161,255,.45);box-shadow:0 14px 30px rgba(0,0,0,.16)}
+    .btn.primary{border-color:transparent;background:linear-gradient(135deg,var(--blue),#397de9);color:white}
+    .hero-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-width:800px;margin-top:52px}
+    .metric{padding:15px;border:1px solid var(--line);border-radius:15px;background:var(--surface);backdrop-filter:blur(15px)}
+    .metric b{display:block;font-size:1.4rem;letter-spacing:-.04em}.metric span{font-size:.68rem;color:var(--muted)}
+    .section-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:32px}
+    .section-head h2{font-size:clamp(2rem,4vw,3.2rem);letter-spacing:-.06em;line-height:1;margin:0}
+    .section-head p{max-width:500px;color:var(--muted);font-size:.88rem;margin:0}
+    .glass{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);backdrop-filter:blur(18px)}
+    .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+    .filter{padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--muted);font-size:.72rem;font-weight:800}
+    .filter.active,.filter:hover{color:var(--text);border-color:rgba(85,161,255,.5);background:rgba(85,161,255,.1)}
+    .projects{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+    .project{border-radius:20px;overflow:hidden;transition:.3s}
+    .project.hidden{display:none}
+    .project:hover{transform:translateY(-6px)}
+    .project-top{height:240px;padding:20px;position:relative;overflow:hidden;background:linear-gradient(135deg,rgba(85,161,255,.13),rgba(141,125,255,.07))}
+    .project-top::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(140,177,218,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(140,177,218,.08) 1px,transparent 1px);background-size:28px 28px}
+    .project-label{position:relative;z-index:1;color:var(--muted);font-size:.62rem;font-weight:900;letter-spacing:.13em}
+    .chart-wrap{position:absolute;left:18px;right:18px;bottom:14px;top:48px}
+    .project-body{padding:24px}
+    .project-body small{color:var(--blue);font-size:.63rem;font-weight:900;letter-spacing:.12em}
+    .project-body h3{margin:8px 0;font-size:1.25rem;line-height:1.2;letter-spacing:-.03em}
+    .project-body p{color:var(--muted);font-size:.83rem}
+    .tags{display:flex;gap:6px;flex-wrap:wrap;margin:15px 0}.tag{font-size:.64rem;padding:5px 8px;border-radius:999px;background:rgba(85,161,255,.09);color:var(--blue);font-weight:800}
+    .project-link{font-size:.78rem;color:var(--blue);font-weight:900}
+    .chart-controls{position:absolute;right:17px;top:14px;z-index:2;display:flex;gap:5px}
+    .mini-filter{border:1px solid var(--line);background:rgba(7,17,29,.72);color:#cfe0f5;border-radius:8px;padding:5px 7px;font-size:.58rem}
+    .mini-filter.active{background:var(--blue);color:#fff;border-color:transparent}
+    html[data-theme="light"] .mini-filter{background:rgba(255,255,255,.8);color:var(--text)}
+    .skill-layout{display:grid;grid-template-columns:minmax(300px,420px) 1fr;gap:22px;align-items:stretch}
+    .radar-card{padding:20px;border-radius:20px;min-height:390px}.radar-wrap{height:340px}
+    .skill-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .skill-card{padding:18px;border-radius:17px;cursor:pointer;transition:.2s}.skill-card:hover{border-color:rgba(85,161,255,.45);transform:translateY(-3px)}
+    .skill-card h3{font-size:.95rem;margin:0 0 6px}.skill-card p{color:var(--muted);font-size:.73rem;margin:0}
+    .skill-detail{max-height:0;overflow:hidden;transition:max-height .3s ease;color:var(--muted);font-size:.7rem}
+    .skill-card.open .skill-detail{max-height:100px;margin-top:10px}.skill-detail strong{color:var(--text)}
+    .timeline{position:relative;margin-top:25px;padding-left:30px}.timeline::before{content:"";position:absolute;left:8px;top:4px;bottom:4px;width:1px;background:linear-gradient(var(--blue),rgba(85,161,255,.08))}
+    .career{position:relative;margin-bottom:18px;padding:20px 22px;border-radius:18px;transition:.3s}
+    .career::before{content:"";position:absolute;left:-28px;top:25px;width:11px;height:11px;border-radius:50%;background:var(--bg);border:2px solid var(--blue);box-shadow:0 0 0 rgba(85,161,255,0);transition:.3s}
+    .career.visible::before{box-shadow:0 0 22px 5px rgba(85,161,255,.34);background:var(--blue)}
+    .career-head{display:flex;justify-content:space-between;gap:15px;align-items:start}.career h3{margin:0;font-size:1rem}.career time{font-size:.68rem;color:var(--blue);font-weight:900;white-space:nowrap}
+    .career-company{font-size:.76rem;color:var(--muted);margin:3px 0 10px}.career-summary{font-size:.74rem;color:var(--muted)}
+    .career-more{max-height:0;overflow:hidden;transition:max-height .35s ease}.career.open .career-more{max-height:250px}
+    .career button{margin-top:12px;background:none;border:0;color:var(--blue);padding:0;font-size:.7rem;font-weight:900}
+    .outcomes{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.outcomes span{font-size:.62rem;padding:5px 8px;background:rgba(86,214,162,.08);color:var(--success);border-radius:999px;font-weight:800}
+    .process{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:30px}.step{padding:16px;border-radius:15px}.step b{color:var(--blue);font-size:.65rem}.step strong{display:block;font-size:.78rem;margin-top:13px}.step small{display:block;color:var(--muted);font-size:.62rem}
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.contact-card{padding:25px;border-radius:20px}.contact-card p{color:var(--muted);font-size:.83rem}
+    form{display:grid;gap:11px}label{font-size:.68rem;color:var(--muted);font-weight:800}input,textarea,select{width:100%;border:1px solid var(--line);background:var(--surface-soft);color:var(--text);border-radius:11px;padding:11px 12px;outline:none}input:focus,textarea:focus,select:focus{border-color:rgba(85,161,255,.6);box-shadow:0 0 0 3px rgba(85,161,255,.08)}textarea{min-height:130px;resize:vertical}
+    footer{padding:25px 45px;color:var(--muted);font-size:.7rem;display:flex;justify-content:space-between;gap:20px}
+    .modal{position:fixed;inset:0;z-index:100;display:none;place-items:center;padding:20px;background:rgba(1,7,14,.72);backdrop-filter:blur(12px)}.modal.show{display:grid}
+    .modal-card{width:min(700px,100%);max-height:90vh;overflow:auto;padding:28px;border-radius:24px;position:relative}.close{position:absolute;right:16px;top:16px;width:36px;height:36px;border:1px solid var(--line);background:var(--surface-soft);color:var(--text);border-radius:10px}
+    .map{height:270px;margin-top:20px;border-radius:18px;overflow:hidden;border:1px solid var(--line);position:relative;background:linear-gradient(145deg,#0b1d31,#102943)}
+    html[data-theme="light"] .map{background:linear-gradient(145deg,#e9f2fc,#f8fbff)}
+    .map svg{width:100%;height:100%}.map .country{fill:rgba(85,161,255,.16);stroke:rgba(85,161,255,.5);stroke-width:2}.map .route{fill:none;stroke:var(--cyan);stroke-width:3;stroke-dasharray:8 7;animation:dash 3s linear infinite}.map .point{fill:var(--blue);stroke:white;stroke-width:2}.map text{fill:var(--muted);font-size:12px;font-weight:700}
+    @keyframes dash{to{stroke-dashoffset:-60}}
+    .resume-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}.resume-option{padding:16px;border:1px solid var(--line);background:var(--surface-soft);border-radius:15px;text-align:left}.resume-option b{display:block}.resume-option span{font-size:.68rem;color:var(--muted)}
+    .toast{position:fixed;bottom:24px;right:24px;z-index:200;padding:12px 15px;border-radius:12px;background:var(--surface-solid);border:1px solid var(--line);box-shadow:var(--shadow);font-size:.75rem;display:none}.toast.show{display:block;animation:toast .25s ease}@keyframes toast{from{transform:translateY(8px);opacity:0}to{transform:none;opacity:1}}
+    .mobile-bar{display:none}
+    @media(max-width:1050px){:root{--sidebar:290px}.hero-metrics{grid-template-columns:1fr 1fr}.process{grid-template-columns:repeat(4,1fr)}.skill-layout{grid-template-columns:1fr}.radar-card{min-height:340px}}
+    @media(max-width:800px){.app{display:block}.sidebar{display:none}.topbar{padding:0 17px}.nav{display:none}.mobile-bar{display:flex;gap:8px;align-items:center}.mobile-bar a{font-size:.68rem;color:var(--muted);font-weight:800}.mobile-bar a:hover{color:var(--text)}section{padding:72px 20px}.hero{min-height:calc(100vh - 74px)}.hero h2{font-size:clamp(2.5rem,12vw,4.7rem)}.projects,.contact-grid{grid-template-columns:1fr}.skill-cards{grid-template-columns:1fr 1fr}.process{grid-template-columns:1fr 1fr}.section-head{display:block}.section-head p{margin-top:14px}.resume-grid{grid-template-columns:1fr}.topbar .theme-toggle{margin-left:auto}}
+    @media(max-width:480px){.hero-metrics{grid-template-columns:1fr 1fr}.skill-cards{grid-template-columns:1fr}.process{grid-template-columns:1fr}.career-head{display:block}.career time{display:block;margin-bottom:5px}footer{padding:20px;display:block}.project-top{height:215px}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+  </style>
+</head>
 
----
+<body>
+<div class="app">
 
-### Key Requirements & Functional Specifications:
+  <aside class="sidebar">
+    <div>
+      <div class="brand">Dinesh<span>.</span></div>
+      <div class="portrait-wrap">
+        <img class="portrait" src="https://avatars.githubusercontent.com/u/124869419?v=4" alt="Dinesh A V">
+      </div>
+      <div class="identity">
+        <h1>Dinesh A V</h1>
+        <p>Data Analyst · BI · Reporting</p>
+        <button class="location" id="locationBtn"><i data-lucide="map-pin"></i> Weimar, Germany</button>
+      </div>
+      <div class="quick-links">
+        <a class="icon-btn" title="LinkedIn" href="https://www.linkedin.com/in/dinesh-a-v-323b97309/" target="_blank" rel="noopener"><i data-lucide="linkedin"></i></a>
+        <a class="icon-btn" title="GitHub" href="https://github.com/Dinesh949?tab=repositories" target="_blank" rel="noopener"><i data-lucide="github"></i></a>
+        <button class="icon-btn" title="WhatsApp" id="whatsappBtn"><i data-lucide="message-circle"></i></button>
+        <a class="icon-btn" title="Email" href="mailto:avdinesh.3012@gmail.com"><i data-lucide="mail"></i></a>
+      </div>
+      <div class="clock">
+        <small>Germany time · CEST/CET</small>
+        <div id="clock">--:--:--</div>
+        <small id="clockDate">Loading…</small>
+      </div>
+    </div>
+    <div class="side-bottom">
+      <div class="availability"><span class="dot"></span> Open to opportunities</div><br>
+      Germany · Open to relocation
+    </div>
+  </aside>
 
-1. Visual Theme & Layout Architecture:
-   - Layout: Modern split-screen / sidebar layout on desktop (Sticky Left Profile Sidebar + Scrollable Right Content Area), collapsing to a clean single column on mobile.
-   - Design Aesthetic: Modern Dark Mode with subtle blue/slate glowing accents, glassmorphism card components (`backdrop-filter: blur()`), light grid pattern background, and smooth hover micro-interactions.
-   - Theme Toggle: Interactive Dark/Light Mode switch with local storage persistence.
+  <div class="content">
+    <header class="topbar">
+      <div class="mobile-bar">
+        <a href="#home">Home</a><a href="#projects">Work</a><a href="#skills">Skills</a><a href="#experience">Career</a><a href="#contact">Contact</a>
+      </div>
+      <nav class="nav">
+        <a href="#home">Home</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#experience">Experience</a><a href="#contact">Contact</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" title="Toggle theme"><i data-lucide="sun-moon"></i></button>
+    </header>
 
-2. Interactive Left Sidebar / Profile Card:
-   - Profile Portrait: Circular avatar with a subtle pulsing dynamic gradient ring around it.
-   - Contact & Social Quick-Links: Clickable icon badges for LinkedIn, GitHub, WhatsApp, and Email.
-   - Interactive Location Badge: Clickable "Weimar, Germany" pill tag that toggles an interactive modal showing a light vector map highlight of Germany/EU mobility.
-   - Dynamic Time Counter: Live updating digital clock displaying CEST time (or local time offset).
+    <main>
+      <section class="hero" id="home">
+        <div>
+          <div class="eyebrow">DATA · BI · ANALYTICS ENGINEERING</div>
+          <h2>Turning business data into <span>decision-ready insight.</span></h2>
+          <p class="lead">Senior Data Analyst and Business Intelligence professional focused on Power BI, SQL, Python, DAX, data modeling, ETL and reporting automation. I build analytics that are useful, explainable and easy for stakeholders to act on.</p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#projects"><i data-lucide="bar-chart-3"></i> Explore interactive work</a>
+            <button class="btn" id="resumeBtn"><i data-lucide="file-down"></i> Interactive Resume</button>
+            <a class="btn" href="mailto:avdinesh.3012@gmail.com"><i data-lucide="send"></i> Contact me</a>
+          </div>
+          <div class="hero-metrics">
+            <div class="metric"><b>5+</b><span>Years experience</span></div>
+            <div class="metric"><b>11+</b><span>Data platforms integrated</span></div>
+            <div class="metric"><b>50%</b><span>Manual reporting reduction</span></div>
+            <div class="metric"><b>35%</b><span>Self-service BI adoption</span></div>
+          </div>
+        </div>
+      </section>
 
-3. Creative & Interactive Portfolio Features:
+      <section id="projects">
+        <div class="section-head">
+          <div><div class="eyebrow">SELECTED WORK</div><h2>Interactive portfolio</h2></div>
+          <p>Explore the work by capability. Chart values are illustrative portfolio demo data; replace them with your production KPIs/screenshots when available.</p>
+        </div>
+        <div class="filters" id="projectFilters">
+          <button class="filter active" data-filter="all">All</button>
+          <button class="filter" data-filter="powerbi">Power BI</button>
+          <button class="filter" data-filter="python">Python / ETL</button>
+          <button class="filter" data-filter="ml">Machine Learning</button>
+          <button class="filter" data-filter="governance">Governance</button>
+        </div>
 
-   A. Live Dynamic Data Dashboards (Replacing Static Project Repos):
-      - Integrate real interactive JavaScript charts using Chart.js inside the Project cards:
-        - Project 1 (Healthcare): Interactive line/bar chart displaying dynamic ER Wait Time vs. Patient Influx with live filter buttons (e.g., "Peak Hours", "Off-Peak", "Staffed").
-        - Project 2 (Marketing KPI): Interactive donut/stacked chart showing multi-platform campaign performance (Google, Meta, Datorama).
-      - Include interactive filter tags above the projects section (e.g., [All], [Power BI], [Python/ETL], [Machine Learning], [Governance]) that dynamically animate and filter project cards without page reloads.
+        <div class="projects">
+          <article class="project glass" data-categories="powerbi governance">
+            <div class="project-top">
+              <span class="project-label">PROJECT 01 · HEALTHCARE BI</span>
+              <div class="chart-controls" id="healthControls">
+                <button class="mini-filter active" data-health="peak">Peak Hours</button>
+                <button class="mini-filter" data-health="off">Off-Peak</button>
+                <button class="mini-filter" data-health="staffed">Staffed</button>
+              </div>
+              <div class="chart-wrap"><canvas id="healthChart"></canvas></div>
+            </div>
+            <div class="project-body">
+              <small>POWER BI · DAX · POWER QUERY · SQL</small>
+              <h3>Healthcare BI Pipeline & Capacity Analytics</h3>
+              <p>Interactive portfolio concept for analyzing emergency-room patient influx and wait-time patterns with a governed semantic model, DAX measures and data-quality checks.</p>
+              <div class="tags"><span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">Data Modeling</span><span class="tag">Governance</span></div>
+              <a class="project-link" href="https://github.com/Dinesh949/Patient-Emergency-Room-Visit-Report-Analysis" target="_blank" rel="noopener">View repository →</a>
+            </div>
+          </article>
 
-   B. Interactive Skill Competency Radar / Progress Indicators:
-      - Replace static markdown tables with interactive, expandable skill cards or an interactive Chart.js Radar Chart comparing technical depth across BI, Data Engineering, Governance, and Automation.
-      - Add interactive tooltips when hovering over skills (e.g., hovering over "DAX" displays "Advanced: Star Schema, Time Intelligence, Dynamic RLS").
+          <article class="project glass" data-categories="powerbi governance">
+            <div class="project-top">
+              <span class="project-label">PROJECT 02 · MARKETING KPI</span>
+              <div class="chart-wrap"><canvas id="marketingChart"></canvas></div>
+            </div>
+            <div class="project-body">
+              <small>POWER BI · DATORAMA · SQL · SSIS</small>
+              <h3>Multi-Platform Marketing KPI Governance</h3>
+              <p>Unified fragmented campaign data into KPI-focused reporting, reconciliation checks and executive-ready dashboards across multiple platforms.</p>
+              <div class="tags"><span class="tag">Power BI</span><span class="tag">Datorama</span><span class="tag">SQL</span><span class="tag">Governance</span></div>
+              <a class="project-link" href="https://github.com/Dinesh949/Power_BI_Data_Analysis_Projects" target="_blank" rel="noopener">View repository →</a>
+            </div>
+          </article>
 
-   C. Interactive Career Timeline:
-      - Vertical animated timeline where nodes glow on scroll into view.
-      - Each career node is clickable/expandable, revealing key metrics, achieved SOPs, and quantifiable business outcomes.
+          <article class="project glass" data-categories="python">
+            <div class="project-top"><span class="project-label">PROJECT 03 · DATA ENGINEERING</span><div class="chart-wrap"><canvas id="pipelineChart"></canvas></div></div>
+            <div class="project-body">
+              <small>PYTHON · SELENIUM · ETL · SQL</small>
+              <h3>Automated Web Ingestion Pipeline</h3>
+              <p>Python Selenium workflow for collecting, cleaning and standardizing unstructured web data into analytics-ready records.</p>
+              <div class="tags"><span class="tag">Python</span><span class="tag">Selenium</span><span class="tag">ETL</span><span class="tag">SQL</span></div>
+              <a class="project-link" href="https://github.com/Dinesh949/Web_Scrapping_Selenium" target="_blank" rel="noopener">View repository →</a>
+            </div>
+          </article>
 
-   D. Dynamic ATS Resume & Contact Generator:
-      - "Download Interactive Resume" button with a choice dropdown (e.g., PDF Export, One-Page Executive Summary, ATS Plain Text).
-      - Interactive Contact Section with a working client-side modal or form (Formspree/EmailJS integration) for direct recruiter messaging.
+          <article class="project glass" data-categories="python ml">
+            <div class="project-top"><span class="project-label">PROJECT 04 · PREDICTIVE ANALYTICS</span><div class="chart-wrap"><canvas id="mlChart"></canvas></div></div>
+            <div class="project-body">
+              <small>PYTHON · PANDAS · SCIKIT-LEARN</small>
+              <h3>Predictive Asset Valuation Engine</h3>
+              <p>Regression-based valuation workflow with feature engineering, model validation and a deployment-oriented Python structure.</p>
+              <div class="tags"><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Scikit-Learn</span><span class="tag">Regression</span></div>
+              <a class="project-link" href="https://github.com/Dinesh949/Car_Price_Prediction" target="_blank" rel="noopener">View repository →</a>
+            </div>
+          </article>
+        </div>
+      </section>
 
----
+      <section id="skills">
+        <div class="section-head"><div><div class="eyebrow">TECHNICAL DEPTH</div><h2>Analytics capability map</h2></div><p>Click a capability to expand the practical depth behind the headline skill.</p></div>
+        <div class="skill-layout">
+          <div class="radar-card glass"><div class="eyebrow">COMPETENCY RADAR</div><div class="radar-wrap"><canvas id="radarChart"></canvas></div></div>
+          <div class="skill-cards">
+            <div class="skill-card glass"><h3>Power BI</h3><p>Advanced · DAX · semantic models</p><div class="skill-detail"><strong>Depth:</strong> Star schema, time intelligence, calculated tables/measures, validation and dashboard design.</div></div>
+            <div class="skill-card glass"><h3>DAX</h3><p>Advanced · analytical modeling</p><div class="skill-detail"><strong>Depth:</strong> Context transition, CALCULATE patterns, time intelligence, filter propagation and reusable measures.</div></div>
+            <div class="skill-card glass"><h3>SQL</h3><p>Advanced · analytics & ETL</p><div class="skill-detail"><strong>Depth:</strong> Joins, CTEs, aggregations, transformations, validation and analytics-ready datasets.</div></div>
+            <div class="skill-card glass"><h3>Python</h3><p>Intermediate/Advanced · data workflows</p><div class="skill-detail"><strong>Depth:</strong> Pandas, automation, Selenium, preprocessing, exploratory analysis and ML workflows.</div></div>
+            <div class="skill-card glass"><h3>Power Query</h3><p>Advanced · transformation</p><div class="skill-detail"><strong>Depth:</strong> Reusable transformations, data profiling, type handling, merges, appends and QA checks.</div></div>
+            <div class="skill-card glass"><h3>Excel / VBA</h3><p>Advanced · reporting automation</p><div class="skill-detail"><strong>Depth:</strong> Advanced formulas, Power Query, macros, automated recurring reporting and operational trackers.</div></div>
+            <div class="skill-card glass"><h3>Power Automate</h3><p>Automation · distribution</p><div class="skill-detail"><strong>Depth:</strong> Automated report distribution, scheduled workflows and process handoffs across Microsoft 365.</div></div>
+            <div class="skill-card glass"><h3>Data Governance</h3><p>KPI consistency · QA · SOPs</p><div class="skill-detail"><strong>Depth:</strong> Reconciliation, validation, KPI definitions, documentation, SOPs and stakeholder enablement.</div></div>
+          </div>
+        </div>
+      </section>
 
-### Output Expected:
-Provide a complete, fully functional, beautifully styled single-file `index.html` (containing inline CSS in `<style>` and JavaScript in `<script>`) implementing all these interactive elements, fully responsive and ready to host on GitHub Pages.
+      <section id="experience">
+        <div class="section-head"><div><div class="eyebrow">CAREER JOURNEY</div><h2>Experience timeline</h2></div><p>Click each role to reveal the work and outcomes to emphasize during recruiter screening.</p></div>
+        <div class="timeline">
+          <article class="career glass">
+            <div class="career-head"><div><h3>Senior Associate — Reporting & Insights</h3><div class="career-company">GUS Education India</div></div><time>2025–2026</time></div>
+            <div class="career-summary">Power BI, SQL, Python, CRM reporting, automation and stakeholder analytics.</div>
+            <button>Expand role +</button>
+            <div class="career-more">
+              <div class="outcomes">
+                <span>Power BI Enablement</span>
+                <span>Reporting Automation</span>
+                <span>Data Reconciliation</span>
+              </div>
+              <p style="margin-top:10px;">Led enterprise reporting governance, optimized multi-source SQL pipelines, and built self-service Power BI solutions to drive automated reporting adoption and reduce manual compilation effort.</p>
+            </div>
+          </article>
+
+          <article class="career glass">
+            <div class="career-head"><div><h3>Senior Analyst — Business Intelligence</h3><div class="career-company">Omnicom Media Group</div></div><time>2023–2024</time></div>
+            <div class="career-summary">Unified KPI models, marketing platform integration, and executive reporting.</div>
+            <button>Expand role +</button>
+            <div class="career-more">
+              <div class="outcomes">
+                <span>KPI Governance</span>
+                <span>Cross-Platform ETL</span>
+                <span>Marketing Analytics</span>
+              </div>
+              <p style="margin-top:10px;">Architected unified KPI models across Datorama, Meta, Google, and internal databases. Streamlined multi-channel performance tracking with automated reconciliation and executive summary templates.</p>
+            </div>
+          </article>
+
+          <article class="career glass">
+            <div class="career-head"><div><h3>Project Engineer — ETL & Dashboard Development</h3><div class="career-company">JLL Pvt Ltd</div></div><time>2022–2023</time></div>
+            <div class="career-summary">SQL, SSIS pipelines, Power BI interactive reporting, and data QA.</div>
+            <button>Expand role +</button>
+            <div class="career-more">
+              <div class="outcomes">
+                <span>SSIS Data Pipelines</span>
+                <span>Star Schema Modeling</span>
+                <span>DAX Optimization</span>
+              </div>
+              <p style="margin-top:10px;">Engineered robust SSIS ETL workflows and star schema models to feed high-performance Power BI dashboards, establishing standard data quality protocols and automated validation routines.</p>
+            </div>
+          </article>
+
+          <article class="career glass">
+            <div class="career-head"><div><h3>Project Engineer — Data & Operations</h3><div class="career-company">NCC Limited</div></div><time>2021–2022</time></div>
+            <div class="career-summary">Excel VBA automation, operational reporting, and project tracking.</div>
+            <button>Expand role +</button>
+            <div class="career-more">
+              <div class="outcomes">
+                <span>VBA Automation</span>
+                <span>Operational Control</span>
+                <span>Reporting Speed +50%</span>
+              </div>
+              <p style="margin-top:10px;">Automated repetitive manual data collection and reporting tasks using Excel VBA macros, reducing cycle times for critical operational updates and improving tracking accuracy.</p>
+            </div>
+          </article>
+
+          <article class="career glass">
+            <div class="career-head"><div><h3>Assistant Engineer — PMO Planning & Coordination</h3><div class="career-company">Aparna Constructions & Estates</div></div><time>2018–2021</time></div>
+            <div class="career-summary">Milestone tracking, resource allocation, and technical reporting.</div>
+            <button>Expand role +</button>
+            <div class="career-more">
+              <div class="outcomes">
+                <span>PMO Analytics</span>
+                <span>Milestone Tracking</span>
+                <span>Resource Planning</span>
+              </div>
+              <p style="margin-top:10px;">Monitored project schedules, coordinated multi-department workflows, and compiled core progress reports for leadership, laying the foundation for systematic data management and reporting.</p>
+            </div>
+          </article>
+        </div>
+
+        <div style="margin-top: 50px;">
+          <div class="eyebrow">ANALYTICAL WORKFLOW</div>
+          <h3 style="font-size: 1.5rem; letter-spacing: -.03em; margin-top: 5px;">End-to-End Delivery Process</h3>
+          <div class="process">
+            <div class="step glass"><b>01</b><strong>Requirements</strong><small>KPI Alignment</small></div>
+            <div class="step glass"><b>02</b><strong>Data Ingestion</strong><small>SQL / Pipelines</small></div>
+            <div class="step glass"><b>03</b><strong>Data Modeling</strong><small>Star Schema</small></div>
+            <div class="step glass"><b>04</b><strong>DAX / Metrics</strong><small>Logic & Formulas</small></div>
+            <div class="step glass"><b>05</b><strong>Dashboard UI</strong><small>Self-Service UX</small></div>
+            <div class="step glass"><b>06</b><strong>QA & Governance</strong><small>Reconciliation</small></div>
+            <div class="step glass"><b>07</b><strong>Enablement</strong><small>SOPs & Adoption</small></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="section-head">
+          <div><div class="eyebrow">GET IN TOUCH</div><h2>Let's discuss opportunities</h2></div>
+          <p>Open to Senior Data Analyst, Business Intelligence, and Analytics Engineering roles in Germany and across the EU.</p>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-card glass">
+            <h3>Direct Contact & Relocation</h3>
+            <p>Based in Weimar, Germany. Ready to contribute to team goals with clear data insights, streamlined pipelines, and self-service BI environments.</p>
+            <div style="margin-top:20px; display:flex; flex-direction:column; gap:12px;">
+              <div style="display:flex; align-items:center; gap:10px; font-size:.85rem;"><i data-lucide="map-pin" style="color:var(--blue);"></i> Weimar, Germany (EU Mobility)</div>
+              <div style="display:flex; align-items:center; gap:10px; font-size:.85rem;"><i data-lucide="mail" style="color:var(--blue);"></i> avdinesh.3012@gmail.com</div>
+              <div style="display:flex; align-items:center; gap:10px; font-size:.85rem;"><i data-lucide="globe" style="color:var(--blue);"></i> English, Hindi, Telugu, German (A2)</div>
+            </div>
+          </div>
+
+          <div class="contact-card glass">
+            <form id="contactForm" onsubmit="handleFormSubmit(event)">
+              <div>
+                <label for="name">YOUR NAME</label>
+                <input type="text" id="name" required placeholder="Jane Doe">
+              </div>
+              <div>
+                <label for="email">YOUR EMAIL</label>
+                <input type="email" id="email" required placeholder="jane@company.com">
+              </div>
+              <div>
+                <label for="message">MESSAGE</label>
+                <textarea id="message" required placeholder="Hi Dinesh, we'd love to chat about a Senior Data Analyst role..."></textarea>
+              </div>
+              <button type="submit" class="btn primary" style="justify-content:center; width:100%;"><i data-lucide="send"></i> Send Message</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div>© 2026 Dinesh A V · Senior Data Analyst & BI Specialist</div>
+      <div>Hosted on GitHub Pages · Pure Vanilla HTML/CSS/JS</div>
+    </footer>
+  </div>
+</div>
+
+<div class="modal" id="locationModal">
+  <div class="modal-card glass">
+    <button class="close" id="closeLocationModal"><i data-lucide="x"></i></button>
+    <div class="eyebrow">LOCATION & MOBILITY</div>
+    <h2>Weimar, Germany</h2>
+    <p style="color:var(--muted); font-size:.85rem; margin-top:5px;">Strategically located in Central Germany (Thuringia) with direct transit connectivity to major tech hubs across Germany and the European Union.</p>
+    <div class="map">
+      <svg viewBox="0 0 400 250">
+        <path class="country" d="M 120,40 L 180,30 L 260,50 L 310,110 L 290,190 L 210,220 L 130,200 L 90,130 Z" />
+        <path class="route" d="M 200,120 L 170,160" />
+        <path class="route" d="M 200,120 L 240,80" />
+        <path class="route" d="M 200,120 L 140,90" />
+        <circle class="point" cx="200" cy="120" r="6" />
+        <text x="212" y="124">Weimar (Base)</text>
+        <circle class="point" cx="240" cy="80" r="4" />
+        <text x="250" y="84">Berlin</text>
+        <circle class="point" cx="170" cy="160" r="4" />
+        <text x="115" y="175">Frankfurt / Munich</text>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="resumeModal">
+  <div class="modal-card glass">
+    <button class="close" id="closeResumeModal"><i data-lucide="x"></i></button>
+    <div class="eyebrow">INTERACTIVE RESUME EXPORT</div>
+    <h2>Select Format</h2>
+    <p style="color:var(--muted); font-size:.85rem; margin-top:5px;">Choose the resume representation optimized for your review format or ATS parser.</p>
+    <div class="resume-grid">
+      <button class="resume-option" onclick="downloadResume('pdf')">
+        <i data-lucide="file-text" style="color:var(--blue); margin-bottom:8px;"></i>
+        <b>Full Resume (PDF)</b>
+        <span>Complete multi-page history and technical stack</span>
+      </button>
+      <button class="resume-option" onclick="downloadResume('summary')">
+        <i data-lucide="award" style="color:var(--cyan); margin-bottom:8px;"></i>
+        <b>Executive Summary</b>
+        <span>1-page high-impact performance & metrics sheet</span>
+      </button>
+      <button class="resume-option" onclick="downloadResume('ats')">
+        <i data-lucide="code" style="color:var(--violet); margin-bottom:8px;"></i>
+        <b>ATS Plain Text</b>
+        <span>Unformatted text optimized for recruiters' automated systems</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast">Message sent successfully!</div>
+
+<script>
+  lucide.createIcons();
+
+  const themeToggleBtn = document.getElementById('themeToggle');
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+
+  themeToggleBtn.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', nextTheme);
+    localStorage.setItem('theme', nextTheme);
+    updateChartTheme();
+  });
+
+  function updateClock() {
+    const now = new Date();
+    const optionsTime = { timeZone: 'Europe/Berlin', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+    const optionsDate = { timeZone: 'Europe/Berlin', weekday: 'short', month: 'short', day: 'numeric' };
+    
+    document.getElementById('clock').textContent = new Intl.DateTimeFormat([], optionsTime).format(now);
+    document.getElementById('clockDate').textContent = new Intl.DateTimeFormat([], optionsDate).format(now);
+  }
+  setInterval(updateClock, 1000);
+  updateClock();
+
+  const locationBtn = document.getElementById('locationBtn');
+  const locationModal = document.getElementById('locationModal');
+  const closeLocationModal = document.getElementById('closeLocationModal');
+
+  locationBtn.addEventListener('click', () => locationModal.classList.add('show'));
+  closeLocationModal.addEventListener('click', () => locationModal.classList.remove('show'));
+
+  const resumeBtn = document.getElementById('resumeBtn');
+  const resumeModal = document.getElementById('resumeModal');
+  const closeResumeModal = document.getElementById('closeResumeModal');
+
+  resumeBtn.addEventListener('click', () => resumeModal.classList.add('show'));
+  closeResumeModal.addEventListener('click', () => resumeModal.classList.remove('show'));
+
+  window.addEventListener('click', (e) => {
+    if (e.target === locationModal) locationModal.classList.remove('show');
+    if (e.target === resumeModal) resumeModal.classList.remove('show');
+  });
+
+  document.getElementById('whatsappBtn').addEventListener('click', () => {
+    showToast("Connecting via WhatsApp...");
+    window.open('https://wa.me/?text=Hello%20Dinesh,%20I%20reviewed%20your%20analytics%20portfolio.', '_blank');
+  });
+
+  const filterBtns = document.querySelectorAll('#projectFilters .filter');
+  const projectArticles = document.querySelectorAll('.project');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const cat = btn.getAttribute('data-filter');
+
+      projectArticles.forEach(proj => {
+        const categories = proj.getAttribute('data-categories');
+        if (cat === 'all' || categories.includes(cat)) {
+          proj.classList.remove('hidden');
+        } else {
+          proj.classList.add('hidden');
+        }
+      });
+    });
+  });
+
+  document.querySelectorAll('.skill-card').forEach(card => {
+    card.addEventListener('click', () => card.classList.toggle('open'));
+  });
+
+  document.querySelectorAll('.career').forEach(item => {
+    const btn = item.querySelector('button');
+    if(btn) {
+      btn.addEventListener('click', () => {
+        item.classList.toggle('open');
+        btn.textContent = item.classList.contains('open') ? 'Collapse role -' : 'Expand role +';
+      });
+    }
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll('.career').forEach(c => observer.observe(c));
+
+  function handleFormSubmit(e) {
+    e.preventDefault();
+    showToast("Thank you! Your message has been sent.");
+    document.getElementById('contactForm').reset();
+  }
+
+  function showToast(msg) {
+    const toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 3500);
+  }
+
+  function downloadResume(type) {
+    resumeModal.classList.remove('show');
+    showToast(`Downloading ${type.toUpperCase()} Resume option...`);
+  }
+
+  const chartTextColor = () => document.documentElement.getAttribute('data-theme') === 'light' ? '#5c7088' : '#91a4bb';
+  const chartGridColor = () => document.documentElement.getAttribute('data-theme') === 'light' ? 'rgba(45,74,107,0.08)' : 'rgba(151,177,210,0.08)';
+
+  const healthCtx = document.getElementById('healthChart').getContext('2d');
+  const healthChartData = {
+    peak: { labels: ['08:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00'], wait: [35, 55, 78, 62, 85, 90, 65], influx: [20, 45, 60, 50, 70, 75, 55] },
+    off: { labels: ['00:00', '02:00', '04:00', '06:00', '21:00', '23:00'], wait: [15, 10, 8, 12, 25, 20], influx: [10, 5, 4, 8, 18, 14] },
+    staffed: { labels: ['08:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00'], wait: [20, 25, 30, 28, 35, 32, 24], influx: [20, 45, 60, 50, 70, 75, 55] }
+  };
+
+  const healthChart = new Chart(healthCtx, {
+    type: 'line',
+    data: {
+      labels: healthChartData.peak.labels,
+      datasets: [
+        { label: 'Avg Wait (Mins)', data: healthChartData.peak.wait, borderColor: '#ff7892', backgroundColor: 'rgba(255,120,146,0.1)', fill: true, tension: 0.4 },
+        { label: 'Patient Influx', data: healthChartData.peak.influx, borderColor: '#55a1ff', backgroundColor: 'rgba(85,161,255,0.1)', fill: true, tension: 0.4 }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: true, labels: { color: chartTextColor(), font: { size: 10 } } } },
+      scales: {
+        x: { ticks: { color: chartTextColor(), font: { size: 9 } }, grid: { color: chartGridColor() } },
+        y: { ticks: { color: chartTextColor(), font: { size: 9 } }, grid: { color: chartGridColor() } }
+      }
+    }
+  });
+
+  document.querySelectorAll('#healthControls .mini-filter').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('#healthControls .mini-filter').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const mode = btn.getAttribute('data-health');
+      healthChart.data.labels = healthChartData[mode].labels;
+      healthChart.data.datasets[0].data = healthChartData[mode].wait;
+      healthChart.data.datasets[1].data = healthChartData[mode].influx;
+      healthChart.update();
+    });
+  });
+
+  const marketingCtx = document.getElementById('marketingChart').getContext('2d');
+  const marketingChart = new Chart(marketingCtx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Meta Ads', 'Google Search', 'Datorama/Programmatic', 'LinkedIn'],
+      datasets: [{
+        data: [42, 31, 17, 10],
+        backgroundColor: ['#55a1ff', '#68d9ff', '#8d7dff', '#56d6a2'],
+        borderWidth: 0
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'right', labels: { color: chartTextColor(), font: { size: 10 } } } }
+    }
+  });
+
+  const pipelineCtx = document.getElementById('pipelineChart').getContext('2d');
+  const pipelineChart = new Chart(pipelineCtx, {
+    type: 'bar',
+    data: {
+      labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+      datasets: [{ label: 'Records Ingested (k)', data: [14, 22, 18, 29, 31, 12, 9], backgroundColor: 'rgba(104,217,255,0.7)', borderRadius: 6 }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { ticks: { color: chartTextColor(), font: { size: 9 } }, grid: { display: false } },
+        y: { ticks: { color: chartTextColor(), font: { size: 9 } }, grid: { color: chartGridColor() } }
+      }
+    }
+  });
+
+  const mlCtx = document.getElementById('mlChart').getContext('2d');
+  const mlChart = new Chart(mlCtx, {
+    type: 'line',
+    data: {
+      labels: ['10k km', '30k km', '50k km', '70k km', '90k km', '110k km'],
+      datasets: [
+        { label: 'Actual Value', data: [25, 21, 17, 14, 11, 8.5], borderColor: '#8d7dff', tension: 0.2 },
+        { label: 'Model Prediction', data: [24.8, 20.5, 17.2, 13.8, 11.2, 8.2], borderColor: '#56d6a2', borderDash: [4, 4], tension: 0.2 }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: true, labels: { color: chartTextColor(), font: { size: 9 } } } },
+      scales: {
+        x: { ticks: { color: chartTextColor(), font: { size: 9 } }, grid: { display: false } },
+        y: { ticks: { color: chartTextColor(), font: { size: 9 } }, grid: { color: chartGridColor() } }
+      }
+    }
+  });
+
+  const radarCtx = document.getElementById('radarChart').getContext('2d');
+  const radarChart = new Chart(radarCtx, {
+    type: 'radar',
+    data: {
+      labels: ['Power BI / DAX', 'SQL Engineering', 'Python / Automation', 'ETL Pipelines', 'Governance / QA', 'Stakeholder BI'],
+      datasets: [{
+        label: 'Competency Level',
+        data: [95, 90, 82, 85, 88, 92],
+        backgroundColor: 'rgba(85,161,255,0.22)',
+        borderColor: '#55a1ff',
+        pointBackgroundColor: '#68d9ff',
+        pointBorderColor: '#fff'
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        r: {
+          angleLines: { color: chartGridColor() },
+          grid: { color: chartGridColor() },
+          pointLabels: { color: chartTextColor(), font: { size: 10, weight: 'bold' } },
+          ticks: { display: false, stepSize: 20 }
+        }
+      },
+      plugins: { legend: { display: false } }
+    }
+  });
+
+  function updateChartTheme() {
+    [healthChart, marketingChart, pipelineChart, mlChart, radarChart].forEach(chart => {
+      if (chart.options.scales?.x) {
+        chart.options.scales.x.ticks.color = chartTextColor();
+        chart.options.scales.x.grid.color = chartGridColor();
+      }
+      if (chart.options.scales?.y) {
+        chart.options.scales.y.ticks.color = chartTextColor();
+        chart.options.scales.y.grid.color = chartGridColor();
+      }
+      if (chart.options.scales?.r) {
+        chart.options.scales.r.angleLines.color = chartGridColor();
+        chart.options.scales.r.grid.color = chartGridColor();
+        chart.options.scales.r.pointLabels.color = chartTextColor();
+      }
+      if (chart.options.plugins?.legend?.labels) {
+        chart.options.plugins.legend.labels.color = chartTextColor();
+      }
+      chart.update();
+    });
+  }
+</script>
+</body>
+</html>
