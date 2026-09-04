@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
-<html lang="de" data-theme="dark">
+<html lang="en" data-theme="dark" data-lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Dinesh A V — Senior Data Analyst, Business Intelligence & Reporting Specialist. Power BI,Salesforce CRM, SFMC (Datorama ),n8n,Advance Excel (Pivots, Macros & VBA), SQL, Python, DAX, ETL (SSIS, Alteryx) and automation (Power Automate, n8n).">
+  <meta name="description" content="Venkata Dinesh Avvaru — Senior Data Analyst, Business Intelligence & Reporting Specialist. Power BI, SQL, Python, DAX, ETL and automation.">
   <meta name="theme-color" content="#07111f">
-  <title>Dinesh A V | Data Analyst · BI · Analytics Engineering</title>
+  <title>Venkata Dinesh Avvaru | Data Analyst · BI · Analytics Engineering</title>
 
+  <!-- External libraries -->
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
 
@@ -25,7 +25,6 @@
       --bg:#edf3f9; --bg-2:#f7fbff; --surface:rgba(255,255,255,.78);
       --surface-solid:#fff; --surface-soft:rgba(238,245,253,.82);
       --text:#102035; --muted:#5c7088; --line:rgba(45,74,107,.14);
-      --blue:#1769dc; --cyan:#008fbc; --violet:#6654e8;
       --shadow:0 20px 55px rgba(37,62,92,.14);
     }
     *{box-sizing:border-box}
@@ -64,7 +63,7 @@
     .portrait{position:relative;z-index:2;width:164px;height:164px;border-radius:50%;object-fit:cover;border:5px solid var(--surface-solid);box-shadow:0 0 0 1px var(--line)}
     @keyframes spin{to{transform:rotate(360deg)}}
     .identity{text-align:center}
-    .identity h1{font-size:1.65rem;line-height:1.1;margin:0;letter-spacing:-.04em}
+    .identity h1{font-size:1.5rem;line-height:1.15;margin:0;letter-spacing:-.03em}
     .identity p{margin:8px 0;color:var(--muted);font-size:.9rem}
     .location{
       display:inline-flex;align-items:center;gap:7px;margin-top:12px;padding:8px 12px;border:1px solid var(--line);
@@ -96,7 +95,9 @@
     html[data-theme="light"] .topbar{background:rgba(247,251,255,.78)}
     .nav{display:flex;gap:24px;font-size:.78rem;font-weight:700;color:var(--muted)}
     .nav a{transition:.2s}.nav a:hover,.nav a.active{color:var(--text)}
-    .theme-toggle{border:1px solid var(--line);background:var(--surface-soft);color:var(--text);width:42px;height:42px;border-radius:12px;display:grid;place-items:center}
+    .topbar-actions{display:flex;align-items:center;gap:10px}
+    .theme-toggle, .lang-toggle{border:1px solid var(--line);background:var(--surface-soft);color:var(--text);height:42px;border-radius:12px;display:grid;place-items:center;font-weight:800;font-size:.8rem;padding:0 12px;}
+    .theme-toggle{width:42px;padding:0}
     section{padding:92px 45px;border-bottom:1px solid var(--line)}
     .hero{min-height:calc(100vh - 74px);display:flex;align-items:center;position:relative;overflow:hidden}
     .hero::after{content:"";position:absolute;right:-160px;top:10%;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(85,161,255,.18),transparent 68%);pointer-events:none}
@@ -159,13 +160,23 @@
     .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.contact-card{padding:25px;border-radius:20px}.contact-card p{color:var(--muted);font-size:.83rem}
     form{display:grid;gap:11px}label{font-size:.68rem;color:var(--muted);font-weight:800}input,textarea,select{width:100%;border:1px solid var(--line);background:var(--surface-soft);color:var(--text);border-radius:11px;padding:11px 12px;outline:none}input:focus,textarea:focus,select:focus{border-color:rgba(85,161,255,.6);box-shadow:0 0 0 3px rgba(85,161,255,.08)}textarea{min-height:130px;resize:vertical}
     footer{padding:25px 45px;color:var(--muted);font-size:.7rem;display:flex;justify-content:space-between;gap:20px}
+    
+    /* Modals */
     .modal{position:fixed;inset:0;z-index:100;display:none;place-items:center;padding:20px;background:rgba(1,7,14,.72);backdrop-filter:blur(12px)}.modal.show{display:grid}
-    .modal-card{width:min(700px,100%);max-height:90vh;overflow:auto;padding:28px;border-radius:24px;position:relative}.close{position:absolute;right:16px;top:16px;width:36px;height:36px;border:1px solid var(--line);background:var(--surface-soft);color:var(--text);border-radius:10px}
+    .modal-card{width:min(720px,100%);max-height:90vh;overflow:auto;padding:28px;border-radius:24px;position:relative}.close{position:absolute;right:16px;top:16px;width:36px;height:36px;border:1px solid var(--line);background:var(--surface-soft);color:var(--text);border-radius:10px}
     .map{height:270px;margin-top:20px;border-radius:18px;overflow:hidden;border:1px solid var(--line);position:relative;background:linear-gradient(145deg,#0b1d31,#102943)}
     html[data-theme="light"] .map{background:linear-gradient(145deg,#e9f2fc,#f8fbff)}
     .map svg{width:100%;height:100%}.map .country{fill:rgba(85,161,255,.16);stroke:rgba(85,161,255,.5);stroke-width:2}.map .route{fill:none;stroke:var(--cyan);stroke-width:3;stroke-dasharray:8 7;animation:dash 3s linear infinite}.map .point{fill:var(--blue);stroke:white;stroke-width:2}.map text{fill:var(--muted);font-size:12px;font-weight:700}
     @keyframes dash{to{stroke-dashoffset:-60}}
-    .resume-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}.resume-option{padding:16px;border:1px solid var(--line);background:var(--surface-soft);border-radius:15px;text-align:left}.resume-option b{display:block}.resume-option span{font-size:.68rem;color:var(--muted)}
+    
+    .resume-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}
+    .resume-option{padding:18px;border:1px solid var(--line);background:var(--surface-soft);border-radius:16px;text-align:left;transition:.2s;display:block;color:inherit}
+    .resume-option:hover{transform:translateY(-3px);border-color:rgba(85,161,255,.5);background:rgba(85,161,255,.08)}
+    .resume-option b{display:block;margin-bottom:4px;font-size:.9rem}
+    .resume-option span{font-size:.7rem;color:var(--muted);line-height:1.4;display:block}
+    
+    .view-content-box{background:var(--surface-solid);border:1px solid var(--line);padding:20px;border-radius:14px;font-size:.82rem;white-space:pre-wrap;font-family:monospace;max-height:50vh;overflow-y:auto;color:var(--text);margin-top:15px}
+
     .toast{position:fixed;bottom:24px;right:24px;z-index:200;padding:12px 15px;border-radius:12px;background:var(--surface-solid);border:1px solid var(--line);box-shadow:var(--shadow);font-size:.75rem;display:none}.toast.show{display:block;animation:toast .25s ease}@keyframes toast{from{transform:translateY(8px);opacity:0}to{transform:none;opacity:1}}
     .mobile-bar{display:none}
     @media(max-width:1050px){:root{--sidebar:290px}.hero-metrics{grid-template-columns:1fr 1fr}.process{grid-template-columns:repeat(4,1fr)}.skill-layout{grid-template-columns:1fr}.radar-card{min-height:340px}}
@@ -182,12 +193,12 @@
     <div>
       <div class="brand">Dinesh<span>.</span></div>
       <div class="portrait-wrap">
-        <img class="portrait" src="https://avatars.githubusercontent.com/u/124869419?v=4" alt="Dinesh A V">
+        <img class="portrait" src="https://avatars.githubusercontent.com/u/124869419?v=4" alt="Venkata Dinesh Avvaru">
       </div>
       <div class="identity">
-        <h1>Dinesh A V</h1>
-        <p>Data Analyst · BI · Reporting</p>
-        <button class="location" id="locationBtn"><i data-lucide="map-pin"></i> Weimar, Germany</button>
+        <h1>Venkata Dinesh Avvaru</h1>
+        <p data-i18n="role_title">Data Analyst · BI · Reporting</p>
+        <button class="location" id="locationBtn"><i data-lucide="map-pin"></i> <span data-i18n="loc_weimar">Weimar, Germany</span></button>
       </div>
       <div class="quick-links">
         <a class="icon-btn" title="LinkedIn" href="https://www.linkedin.com/in/dinesh-a-v-323b97309/" target="_blank" rel="noopener"><i data-lucide="linkedin"></i></a>
@@ -196,59 +207,70 @@
         <a class="icon-btn" title="Email" href="mailto:avdinesh.3012@gmail.com"><i data-lucide="mail"></i></a>
       </div>
       <div class="clock">
-        <small>Germany time · CEST/CET</small>
+        <small data-i18n="clock_label">Germany time · CEST/CET</small>
         <div id="clock">--:--:--</div>
         <small id="clockDate">Loading…</small>
       </div>
     </div>
     <div class="side-bottom">
-      <div class="availability"><span class="dot"></span> Open to opportunities</div><br>
-      Germany · Open to relocation
+      <div class="availability"><span class="dot"></span> <span data-i18n="open_opps">Open to opportunities</span></div><br>
+      <span data-i18n="reloc_label">Germany · Open to relocation</span>
     </div>
   </aside>
 
   <div class="content">
     <header class="topbar">
       <div class="mobile-bar">
-        <a href="#home">Home</a><a href="#projects">Work</a><a href="#skills">Skills</a><a href="#experience">Career</a><a href="#contact">Contact</a>
+        <a href="#home" data-i18n="nav_home">Home</a>
+        <a href="#projects" data-i18n="nav_work">Work</a>
+        <a href="#skills" data-i18n="nav_skills">Skills</a>
+        <a href="#experience" data-i18n="nav_career">Career</a>
+        <a href="#contact" data-i18n="nav_contact">Contact</a>
       </div>
       <nav class="nav">
-        <a href="#home">Home</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#experience">Experience</a><a href="#contact">Contact</a>
+        <a href="#home" data-i18n="nav_home">Home</a>
+        <a href="#projects" data-i18n="nav_projects">Projects</a>
+        <a href="#skills" data-i18n="nav_skills">Skills</a>
+        <a href="#experience" data-i18n="nav_exp">Experience</a>
+        <a href="#contact" data-i18n="nav_contact">Contact</a>
       </nav>
-      <button class="theme-toggle" id="themeToggle" title="Toggle theme"><i data-lucide="sun-moon"></i></button>
+      <div class="topbar-actions">
+        <button class="lang-toggle" id="langToggle">DE</button>
+        <button class="theme-toggle" id="themeToggle" title="Toggle theme"><i data-lucide="sun-moon"></i></button>
+      </div>
     </header>
 
     <main>
       <section class="hero" id="home">
         <div>
-          <div class="eyebrow">DATA · BI · ANALYTICS ENGINEERING</div>
-          <h2>Turning business data into <span>decision-ready insight.</span></h2>
-          <p class="lead">Senior Data Analyst and Business Intelligence professional focused on Power BI, SQL, Python, DAX, data modeling, ETL and reporting automation. I build analytics that are useful, explainable and easy for stakeholders to act on.</p>
+          <div class="eyebrow" data-i18n="hero_eyebrow">DATA · BI · ANALYTICS ENGINEERING</div>
+          <h2 data-i18n="hero_title">Turning business data into <span>decision-ready insight.</span></h2>
+          <p class="lead" data-i18n="hero_lead">Senior Data Analyst and Business Intelligence professional focused on Power BI, SQL, Python, DAX, data modeling, ETL and reporting automation. I build analytics that are useful, explainable and easy for stakeholders to act on.</p>
           <div class="hero-actions">
-            <a class="btn primary" href="#projects"><i data-lucide="bar-chart-3"></i> Explore interactive work</a>
-            <button class="btn" id="resumeBtn"><i data-lucide="file-down"></i> Interactive Resume</button>
-            <a class="btn" href="mailto:avdinesh.3012@gmail.com"><i data-lucide="send"></i> Contact me</a>
+            <a class="btn primary" href="#projects"><i data-lucide="bar-chart-3"></i> <span data-i18n="btn_explore">Explore interactive work</span></a>
+            <button class="btn" id="resumeBtn"><i data-lucide="file-down"></i> <span data-i18n="btn_resume">Interactive Resume</span></button>
+            <a class="btn" href="mailto:avdinesh.3012@gmail.com"><i data-lucide="send"></i> <span data-i18n="btn_contact">Contact me</span></a>
           </div>
           <div class="hero-metrics">
-            <div class="metric"><b>5+</b><span>Years experience</span></div>
-            <div class="metric"><b>11+</b><span>Data platforms integrated</span></div>
-            <div class="metric"><b>50%</b><span>Manual reporting reduction</span></div>
-            <div class="metric"><b>35%</b><span>Self-service BI adoption</span></div>
+            <div class="metric"><b>5+</b><span data-i18n="m_years">Years experience</span></div>
+            <div class="metric"><b>11+</b><span data-i18n="m_platforms">Data platforms integrated</span></div>
+            <div class="metric"><b>50%</b><span data-i18n="m_reduction">Manual reporting reduction</span></div>
+            <div class="metric"><b>35%</b><span data-i18n="m_adoption">Self-service BI adoption</span></div>
           </div>
         </div>
       </section>
 
       <section id="projects">
         <div class="section-head">
-          <div><div class="eyebrow">SELECTED WORK</div><h2>Interactive portfolio</h2></div>
-          <p>Explore the work by capability. Chart values are illustrative portfolio demo data; replace them with your production KPIs/screenshots when available.</p>
+          <div><div class="eyebrow" data-i18n="p_eyebrow">SELECTED WORK</div><h2 data-i18n="p_title">Interactive portfolio</h2></div>
+          <p data-i18n="p_desc">Explore the work by capability. Chart values represent interactive analytics workflows and portfolio data models.</p>
         </div>
         <div class="filters" id="projectFilters">
-          <button class="filter active" data-filter="all">All</button>
+          <button class="filter active" data-filter="all" data-i18n="f_all">All</button>
           <button class="filter" data-filter="powerbi">Power BI</button>
           <button class="filter" data-filter="python">Python / ETL</button>
-          <button class="filter" data-filter="ml">Machine Learning</button>
-          <button class="filter" data-filter="governance">Governance</button>
+          <button class="filter" data-filter="ml" data-i18n="f_ml">Machine Learning</button>
+          <button class="filter" data-filter="governance" data-i18n="f_gov">Governance</button>
         </div>
 
         <div class="projects">
@@ -256,18 +278,18 @@
             <div class="project-top">
               <span class="project-label">PROJECT 01 · HEALTHCARE BI</span>
               <div class="chart-controls" id="healthControls">
-                <button class="mini-filter active" data-health="peak">Peak Hours</button>
-                <button class="mini-filter" data-health="off">Off-Peak</button>
-                <button class="mini-filter" data-health="staffed">Staffed</button>
+                <button class="mini-filter active" data-health="peak" data-i18n="p1_peak">Peak Hours</button>
+                <button class="mini-filter" data-health="off" data-i18n="p1_off">Off-Peak</button>
+                <button class="mini-filter" data-health="staffed" data-i18n="p1_staffed">Staffed</button>
               </div>
               <div class="chart-wrap"><canvas id="healthChart"></canvas></div>
             </div>
             <div class="project-body">
               <small>POWER BI · DAX · POWER QUERY · SQL</small>
-              <h3>Healthcare BI Pipeline & Capacity Analytics</h3>
-              <p>Interactive portfolio concept for analyzing emergency-room patient influx and wait-time patterns with a governed semantic model, DAX measures and data-quality checks.</p>
+              <h3 data-i18n="p1_title">Healthcare BI Pipeline & Capacity Analytics</h3>
+              <p data-i18n="p1_desc">Interactive portfolio analysis for emergency-room patient influx and wait-time patterns with a governed semantic model, dynamic DAX measures and data-quality checks.</p>
               <div class="tags"><span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">Data Modeling</span><span class="tag">Governance</span></div>
-              <a class="project-link" href="https://github.com/Dinesh949/Patient-Emergency-Room-Visit-Report-Analysis" target="_blank" rel="noopener">View repository →</a>
+              <a class="project-link" href="https://github.com/Dinesh949/Patient-Emergency-Room-Visit-Report-Analysis" target="_blank" rel="noopener"><span data-i18n="view_repo">View repository</span> →</a>
             </div>
           </article>
 
@@ -278,10 +300,10 @@
             </div>
             <div class="project-body">
               <small>POWER BI · DATORAMA · SQL · SSIS</small>
-              <h3>Multi-Platform Marketing KPI Governance</h3>
-              <p>Unified fragmented campaign data into KPI-focused reporting, reconciliation checks and executive-ready dashboards across multiple platforms.</p>
+              <h3 data-i18n="p2_title">Multi-Platform Marketing KPI Governance</h3>
+              <p data-i18n="p2_desc">Consolidated campaign data across 11+ advertising channels into unified KPI reporting, automated reconciliation checks, and executive dashboards.</p>
               <div class="tags"><span class="tag">Power BI</span><span class="tag">Datorama</span><span class="tag">SQL</span><span class="tag">Governance</span></div>
-              <a class="project-link" href="https://github.com/Dinesh949/Power_BI_Data_Analysis_Projects" target="_blank" rel="noopener">View repository →</a>
+              <a class="project-link" href="https://github.com/Dinesh949/Power_BI_Data_Analysis_Projects" target="_blank" rel="noopener"><span data-i18n="view_repo">View repository</span> →</a>
             </div>
           </article>
 
@@ -289,10 +311,10 @@
             <div class="project-top"><span class="project-label">PROJECT 03 · DATA ENGINEERING</span><div class="chart-wrap"><canvas id="pipelineChart"></canvas></div></div>
             <div class="project-body">
               <small>PYTHON · SELENIUM · ETL · SQL</small>
-              <h3>Automated Web Ingestion Pipeline</h3>
-              <p>Python Selenium workflow for collecting, cleaning and standardizing unstructured web data into analytics-ready records.</p>
+              <h3 data-i18n="p3_title">Automated Web Ingestion Pipeline</h3>
+              <p data-i18n="p3_desc">Python Selenium automation for scraping, cleaning, and standardizing unstructured web data into analytics-ready database schemas.</p>
               <div class="tags"><span class="tag">Python</span><span class="tag">Selenium</span><span class="tag">ETL</span><span class="tag">SQL</span></div>
-              <a class="project-link" href="https://github.com/Dinesh949/Web_Scrapping_Selenium" target="_blank" rel="noopener">View repository →</a>
+              <a class="project-link" href="https://github.com/Dinesh949/Web_Scrapping_Selenium" target="_blank" rel="noopener"><span data-i18n="view_repo">View repository</span> →</a>
             </div>
           </article>
 
@@ -300,153 +322,152 @@
             <div class="project-top"><span class="project-label">PROJECT 04 · PREDICTIVE ANALYTICS</span><div class="chart-wrap"><canvas id="mlChart"></canvas></div></div>
             <div class="project-body">
               <small>PYTHON · PANDAS · SCIKIT-LEARN</small>
-              <h3>Predictive Asset Valuation Engine</h3>
-              <p>Regression-based valuation workflow with feature engineering, model validation and a deployment-oriented Python structure.</p>
+              <h3 data-i18n="p4_title">Predictive Asset Valuation Engine</h3>
+              <p data-i18n="p4_desc">Regression-based valuation model with feature engineering, cross-validation, and containerized Python workflow for API deployment.</p>
               <div class="tags"><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Scikit-Learn</span><span class="tag">Regression</span></div>
-              <a class="project-link" href="https://github.com/Dinesh949/Car_Price_Prediction" target="_blank" rel="noopener">View repository →</a>
+              <a class="project-link" href="https://github.com/Dinesh949/Car_Price_Prediction" target="_blank" rel="noopener"><span data-i18n="view_repo">View repository</span> →</a>
             </div>
           </article>
         </div>
       </section>
 
       <section id="skills">
-        <div class="section-head"><div><div class="eyebrow">TECHNICAL DEPTH</div><h2>Analytics capability map</h2></div><p>Click a capability to expand the practical depth behind the headline skill.</p></div>
+        <div class="section-head"><div><div class="eyebrow" data-i18n="sk_eyebrow">TECHNICAL DEPTH</div><h2 data-i18n="sk_title">Analytics capability map</h2></div><p data-i18n="sk_desc">Click a capability to expand the practical depth behind the headline skill.</p></div>
         <div class="skill-layout">
-          <div class="radar-card glass"><div class="eyebrow">COMPETENCY RADAR</div><div class="radar-wrap"><canvas id="radarChart"></canvas></div></div>
+          <div class="radar-card glass"><div class="eyebrow" data-i18n="radar_label">COMPETENCY RADAR</div><div class="radar-wrap"><canvas id="radarChart"></canvas></div></div>
           <div class="skill-cards">
-            <div class="skill-card glass"><h3>Power BI</h3><p>Advanced · DAX · semantic models</p><div class="skill-detail"><strong>Depth:</strong> Star schema, time intelligence, calculated tables/measures, validation and dashboard design.</div></div>
-            <div class="skill-card glass"><h3>DAX</h3><p>Advanced · analytical modeling</p><div class="skill-detail"><strong>Depth:</strong> Context transition, CALCULATE patterns, time intelligence, filter propagation and reusable measures.</div></div>
-            <div class="skill-card glass"><h3>SQL</h3><p>Advanced · analytics & ETL</p><div class="skill-detail"><strong>Depth:</strong> Joins, CTEs, aggregations, transformations, validation and analytics-ready datasets.</div></div>
-            <div class="skill-card glass"><h3>Python</h3><p>Intermediate/Advanced · data workflows</p><div class="skill-detail"><strong>Depth:</strong> Pandas, automation, Selenium, preprocessing, exploratory analysis and ML workflows.</div></div>
-            <div class="skill-card glass"><h3>Power Query</h3><p>Advanced · transformation</p><div class="skill-detail"><strong>Depth:</strong> Reusable transformations, data profiling, type handling, merges, appends and QA checks.</div></div>
-            <div class="skill-card glass"><h3>Excel / VBA</h3><p>Advanced · reporting automation</p><div class="skill-detail"><strong>Depth:</strong> Advanced formulas, Power Query, macros, automated recurring reporting and operational trackers.</div></div>
-            <div class="skill-card glass"><h3>Power Automate</h3><p>Automation · distribution</p><div class="skill-detail"><strong>Depth:</strong> Automated report distribution, scheduled workflows and process handoffs across Microsoft 365.</div></div>
-            <div class="skill-card glass"><h3>Data Governance</h3><p>KPI consistency · QA · SOPs</p><div class="skill-detail"><strong>Depth:</strong> Reconciliation, validation, KPI definitions, documentation, SOPs and stakeholder enablement.</div></div>
+            <div class="skill-card glass"><h3>Power BI</h3><p data-i18n="sk1_sub">Advanced · DAX · semantic models</p><div class="skill-detail"><strong data-i18n="lbl_depth">Depth:</strong> <span data-i18n="sk1_det">Star schema, time intelligence, calculated tables/measures, validation and dashboard design.</span></div></div>
+            <div class="skill-card glass"><h3>DAX</h3><p data-i18n="sk2_sub">Advanced · analytical modeling</p><div class="skill-detail"><strong data-i18n="lbl_depth">Depth:</strong> <span data-i18n="sk2_det">Context transition, CALCULATE patterns, time intelligence, filter propagation and reusable measures.</span></div></div>
+            <div class="skill-card glass"><h3>SQL</h3><p data-i18n="sk3_sub">Advanced · analytics & ETL</p><div class="skill-detail"><strong data-i18n="lbl_depth">Depth:</strong> <span data-i18n="sk3_det">Joins, CTEs, aggregations, transformations, validation and analytics-ready datasets.</span></div></div>
+            <div class="skill-card glass"><h3>Python</h3><p data-i18n="sk4_sub">Intermediate/Advanced · data workflows</p><div class="skill-detail"><strong data-i18n="lbl_depth">Depth:</strong> <span data-i18n="sk4_det">Pandas, automation, Selenium, preprocessing, exploratory analysis and ML workflows.</span></div></div>
+            <div class="skill-card glass"><h3>Power Query</h3><p data-i18n="sk5_sub">Advanced · transformation</p><div class="skill-detail"><strong data-i18n="lbl_depth">Depth:</strong> <span data-i18n="sk5_det">Reusable transformations, data profiling, type handling, merges, appends and QA checks.</span></div></div>
+            <div class="skill-card glass"><h3>Excel / VBA</h3><p data-i18n="sk6_sub">Advanced · reporting automation</p><div class="skill-detail"><strong data-i18n="lbl_depth">Depth:</strong> <span data-i18n="sk6_det">Advanced formulas, Power Query, macros, automated recurring reporting and operational trackers.</span></div></div>
+            <div class="skill-card glass"><h3>Power Automate / n8n</h3><p data-i18n="sk7_sub">Automation · distribution</p><div class="skill-detail"><strong data-i18n="lbl_depth">Depth:</strong> <span data-i18n="sk7_det">Automated report distribution, scheduled workflows and process handoffs across systems.</span></div></div>
+            <div class="skill-card glass"><h3>Data Governance</h3><p data-i18n="sk8_sub">KPI consistency · QA · SOPs</p><div class="skill-detail"><strong data-i18n="lbl_depth">Depth:</strong> <span data-i18n="sk8_det">Reconciliation, validation, KPI definitions, BRD/FRD creation, SOPs and stakeholder enablement.</span></div></div>
           </div>
         </div>
       </section>
 
       <section id="experience">
-        <div class="section-head"><div><div class="eyebrow">CAREER JOURNEY</div><h2>Experience timeline</h2></div><p>Click each role to reveal the work and outcomes to emphasize during recruiter screening.</p></div>
+        <div class="section-head"><div><div class="eyebrow" data-i18n="exp_eyebrow">CAREER JOURNEY</div><h2 data-i18n="exp_title">Experience timeline</h2></div><p data-i18n="exp_desc">Click each role to reveal the work and outcomes to emphasize during recruiter screening.</p></div>
         <div class="timeline">
           <article class="career glass">
-            <div class="career-head"><div><h3>Senior Associate — Reporting & Insights</h3><div class="career-company">GUS Education India</div></div><time>2025–2026</time></div>
-            <div class="career-summary">Power BI, SQL, Python, CRM reporting, automation and stakeholder analytics.</div>
-            <button>Expand role +</button>
+            <div class="career-head"><div><h3>Senior Associate — Reporting & Insights</h3><div class="career-company">GUS Education India</div></div><time>Jan 2025 – Jun 2026</time></div>
+            <div class="career-summary" data-i18n="c1_sum">Power BI, SQL, Python, CRM reporting, automation and stakeholder analytics.</div>
+            <button data-i18n="btn_expand">Expand role +</button>
             <div class="career-more">
               <div class="outcomes">
                 <span>Power BI Enablement</span>
                 <span>Reporting Automation</span>
                 <span>Data Reconciliation</span>
               </div>
-              <p style="margin-top:10px;">Led enterprise reporting governance, optimized multi-source SQL pipelines, and built self-service Power BI solutions to drive automated reporting adoption and reduce manual compilation effort.</p>
+              <p style="margin-top:10px;" data-i18n="c1_det">Rebuilt self-service BI adoption across marketing, admissions, and operations, increasing active dashboard usage by 35%. Authored BRDs, SOPs, and governance frameworks; built automated validation checks in Power Query.</p>
             </div>
           </article>
 
           <article class="career glass">
-            <div class="career-head"><div><h3>Senior Analyst — Business Intelligence</h3><div class="career-company">Omnicom Media Group</div></div><time>2023–2024</time></div>
-            <div class="career-summary">Unified KPI models, marketing platform integration, and executive reporting.</div>
-            <button>Expand role +</button>
+            <div class="career-head"><div><h3>Senior Analyst — Business Intelligence</h3><div class="career-company">Omnicom Media Group</div></div><time>Oct 2023 – Apr 2024</time></div>
+            <div class="career-summary" data-i18n="c2_sum">Unified KPI models, marketing platform integration, and executive reporting.</div>
+            <button data-i18n="btn_expand">Expand role +</button>
             <div class="career-more">
               <div class="outcomes">
                 <span>KPI Governance</span>
                 <span>Cross-Platform ETL</span>
                 <span>Marketing Analytics</span>
               </div>
-              <p style="margin-top:10px;">Architected unified KPI models across Datorama, Meta, Google, and internal databases. Streamlined multi-channel performance tracking with automated reconciliation and executive summary templates.</p>
+              <p style="margin-top:10px;" data-i18n="c2_det">Designed a unified KPI model consolidating 11+ advertising platforms into one Power BI/Datorama executive dashboard. Led international requirements-gathering workshops with client leadership to establish reporting SLAs.</p>
             </div>
           </article>
 
           <article class="career glass">
-            <div class="career-head"><div><h3>Project Engineer — ETL & Dashboard Development</h3><div class="career-company">JLL Pvt Ltd</div></div><time>2022–2023</time></div>
-            <div class="career-summary">SQL, SSIS pipelines, Power BI interactive reporting, and data QA.</div>
-            <button>Expand role +</button>
+            <div class="career-head"><div><h3>Project Engineer — ETL & Dashboard Development</h3><div class="career-company">JLL Pvt Ltd</div></div><time>Aug 2022 – Sep 2023</time></div>
+            <div class="career-summary" data-i18n="c3_sum">SQL, SSIS pipelines, Power BI interactive reporting, and data QA.</div>
+            <button data-i18n="btn_expand">Expand role +</button>
             <div class="career-more">
               <div class="outcomes">
                 <span>SSIS Data Pipelines</span>
                 <span>Star Schema Modeling</span>
                 <span>DAX Optimization</span>
               </div>
-              <p style="margin-top:10px;">Engineered robust SSIS ETL workflows and star schema models to feed high-performance Power BI dashboards, establishing standard data quality protocols and automated validation routines.</p>
+              <p style="margin-top:10px;" data-i18n="c3_det">Built automated SQL/SSIS/Alteryx pipelines powering real-time Power BI dashboards, establishing standard data quality protocols and cutting manual reporting effort by 50%.</p>
             </div>
           </article>
 
           <article class="career glass">
-            <div class="career-head"><div><h3>Project Engineer — Data & Operations</h3><div class="career-company">NCC Limited</div></div><time>2021–2022</time></div>
-            <div class="career-summary">Excel VBA automation, operational reporting, and project tracking.</div>
-            <button>Expand role +</button>
+            <div class="career-head"><div><h3>Project Engineer — Data & Operations</h3><div class="career-company">NCC Limited</div></div><time>Mar 2021 – Aug 2022</time></div>
+            <div class="career-summary" data-i18n="c4_sum">Excel VBA automation, operational reporting, and project tracking.</div>
+            <button data-i18n="btn_expand">Expand role +</button>
             <div class="career-more">
               <div class="outcomes">
                 <span>VBA Automation</span>
                 <span>Operational Control</span>
                 <span>Reporting Speed +50%</span>
               </div>
-              <p style="margin-top:10px;">Automated repetitive manual data collection and reporting tasks using Excel VBA macros, reducing cycle times for critical operational updates and improving tracking accuracy.</p>
+              <p style="margin-top:10px;" data-i18n="c4_det">Built Excel VBA macros and automated Power BI reporting for recurring KPI requests, accelerating operational cycle times and improving tracking accuracy.</p>
             </div>
           </article>
 
           <article class="career glass">
-            <div class="career-head"><div><h3>Assistant Engineer — PMO Planning & Coordination</h3><div class="career-company">Aparna Constructions & Estates</div></div><time>2018–2021</time></div>
-            <div class="career-summary">Milestone tracking, resource allocation, and technical reporting.</div>
-            <button>Expand role +</button>
+            <div class="career-head"><div><h3>Assistant Engineer — PMO Planning & Coordination</h3><div class="career-company">Aparna Constructions & Estates</div></div><time>Oct 2018 – Mar 2021</time></div>
+            <div class="career-summary" data-i18n="c5_sum">Milestone tracking, resource allocation, and technical reporting.</div>
+            <button data-i18n="btn_expand">Expand role +</button>
             <div class="career-more">
               <div class="outcomes">
                 <span>PMO Analytics</span>
                 <span>Milestone Tracking</span>
                 <span>Resource Planning</span>
               </div>
-              <p style="margin-top:10px;">Monitored project schedules, coordinated multi-department workflows, and compiled core progress reports for leadership, laying the foundation for systematic data management and reporting.</p>
+              <p style="margin-top:10px;" data-i18n="c5_det">Coordinated PMO milestone tracking and cross-functional planning across structural and engineering teams, laying the foundation for systematic data management and reporting.</p>
             </div>
           </article>
         </div>
 
         <div style="margin-top: 50px;">
-          <div class="eyebrow">ANALYTICAL WORKFLOW</div>
-          <h3 style="font-size: 1.5rem; letter-spacing: -.03em; margin-top: 5px;">End-to-End Delivery Process</h3>
+          <div class="eyebrow" data-i18n="proc_eyebrow">ANALYTICAL WORKFLOW</div>
+          <h3 style="font-size: 1.5rem; letter-spacing: -.03em; margin-top: 5px;" data-i18n="proc_title">End-to-End Delivery Process</h3>
           <div class="process">
-            <div class="step glass"><b>01</b><strong>Requirements</strong><small>KPI Alignment</small></div>
-            <div class="step glass"><b>02</b><strong>Data Ingestion</strong><small>SQL / Pipelines</small></div>
-            <div class="step glass"><b>03</b><strong>Data Modeling</strong><small>Star Schema</small></div>
-            <div class="step glass"><b>04</b><strong>DAX / Metrics</strong><small>Logic & Formulas</small></div>
-            <div class="step glass"><b>05</b><strong>Dashboard UI</strong><small>Self-Service UX</small></div>
-            <div class="step glass"><b>06</b><strong>QA & Governance</strong><small>Reconciliation</small></div>
-            <div class="step glass"><b>07</b><strong>Enablement</strong><small>SOPs & Adoption</small></div>
+            <div class="step glass"><b>01</b><strong data-i18n="st1_t">Requirements</strong><small data-i18n="st1_s">KPI Alignment</small></div>
+            <div class="step glass"><b>02</b><strong data-i18n="st2_t">Data Ingestion</strong><small data-i18n="st2_s">SQL / Pipelines</small></div>
+            <div class="step glass"><b>03</b><strong data-i18n="st3_t">Data Modeling</strong><small data-i18n="st3_s">Star Schema</small></div>
+            <div class="step glass"><b>04</b><strong data-i18n="st4_t">DAX / Metrics</strong><small data-i18n="st4_s">Logic & Formulas</small></div>
+            <div class="step glass"><b>05</b><strong data-i18n="st5_t">Dashboard UI</strong><small data-i18n="st5_s">Self-Service UX</small></div>
+            <div class="step glass"><b>06</b><strong data-i18n="st6_t">QA & Governance</strong><small data-i18n="st6_s">Reconciliation</small></div>
+            <div class="step glass"><b>07</b><strong data-i18n="st7_t">Enablement</strong><small data-i18n="st7_s">SOPs & Adoption</small></div>
           </div>
         </div>
       </section>
 
       <section id="contact">
         <div class="section-head">
-          <div><div class="eyebrow">GET IN TOUCH</div><h2>Let's discuss opportunities</h2></div>
-          <p>Open to Senior Data Analyst, Business Intelligence, and Analytics Engineering roles in Germany and across the EU.</p>
+          <div><div class="eyebrow" data-i18n="cnt_eyebrow">GET IN TOUCH</div><h2 data-i18n="cnt_title">Let's discuss opportunities</h2></div>
+          <p data-i18n="cnt_desc">Open to Senior Data Analyst, Business Intelligence, and Analytics Engineering roles in Germany and across the EU.</p>
         </div>
         <div class="contact-grid">
           <div class="contact-card glass">
-            <h3>Direct Contact & Relocation</h3>
-            <p>Based in Weimar, Germany. Ready to contribute to team goals with clear data insights, streamlined pipelines, and self-service BI environments.</p>
+            <h3 data-i18n="cnt_head">Direct Contact & Relocation</h3>
+            <p data-i18n="cnt_text">Based in Weimar, Germany. Ready to contribute to team goals with clear data insights, streamlined pipelines, and self-service BI environments.</p>
             <div style="margin-top:20px; display:flex; flex-direction:column; gap:12px;">
-              <div style="display:flex; align-items:center; gap:10px; font-size:.85rem;"><i data-lucide="map-pin" style="color:var(--blue);"></i> Weimar, Germany (EU Mobility)</div>
+              <div style="display:flex; align-items:center; gap:10px; font-size:.85rem;"><i data-lucide="map-pin" style="color:var(--blue);"></i> <span data-i18n="cnt_loc">Weimar, Germany (99425 · EU Mobility)</span></div>
               <div style="display:flex; align-items:center; gap:10px; font-size:.85rem;"><i data-lucide="mail" style="color:var(--blue);"></i> avdinesh.3012@gmail.com</div>
-	     <div style="display:flex; align-items:center; gap:10px; font-size:.85rem;"><i data-lucide="Phone" style="color:var(--blue);"></i> +49 - 176 3769 7874 , +91 - 70 9591 2992</div>
-              <div style="display:flex; align-items:center; gap:10px; font-size:.85rem;"><i data-lucide="globe" style="color:var(--blue);"></i> English, Hindi, Telugu, German (A2, progress toward the B1)</div>
+              <div style="display:flex; align-items:center; gap:10px; font-size:.85rem;"><i data-lucide="globe" style="color:var(--blue);"></i> <span data-i18n="cnt_lang">English (Fluent), German (B1/B2)</span></div>
             </div>
           </div>
 
           <div class="contact-card glass">
             <form id="contactForm" onsubmit="handleFormSubmit(event)">
               <div>
-                <label for="name">YOUR NAME</label>
+                <label for="name" data-i18n="lbl_name">YOUR NAME</label>
                 <input type="text" id="name" required placeholder="Jane Doe">
               </div>
               <div>
-                <label for="email">YOUR EMAIL</label>
+                <label for="email" data-i18n="lbl_email">YOUR EMAIL</label>
                 <input type="email" id="email" required placeholder="jane@company.com">
               </div>
               <div>
-                <label for="message">MESSAGE</label>
+                <label for="message" data-i18n="lbl_msg">MESSAGE</label>
                 <textarea id="message" required placeholder="Hi Dinesh, we'd love to chat about a Senior Data Analyst role..."></textarea>
               </div>
-              <button type="submit" class="btn primary" style="justify-content:center; width:100%;"><i data-lucide="send"></i> Send Message</button>
+              <button type="submit" class="btn primary" style="justify-content:center; width:100%;"><i data-lucide="send"></i> <span data-i18n="btn_send">Send Message</span></button>
             </form>
           </div>
         </div>
@@ -454,18 +475,19 @@
     </main>
 
     <footer>
-      <div>© 2026 Dinesh A V · Senior Data Analyst & BI Specialist</div>
-      <div>Hosted on GitHub Pages · Pure Vanilla HTML/CSS/JS</div>
+      <div data-i18n="ft_copy">© 2026 Venkata Dinesh Avvaru · Senior Data Analyst & BI Specialist</div>
+      <div data-i18n="ft_tech">Hosted on GitHub Pages · Pure Vanilla HTML/CSS/JS</div>
     </footer>
   </div>
 </div>
 
+<!-- Location / EU Mobility Modal -->
 <div class="modal" id="locationModal">
   <div class="modal-card glass">
     <button class="close" id="closeLocationModal"><i data-lucide="x"></i></button>
-    <div class="eyebrow">LOCATION & MOBILITY</div>
+    <div class="eyebrow" data-i18n="loc_eyebrow">LOCATION & MOBILITY</div>
     <h2>Weimar, Germany</h2>
-    <p style="color:var(--muted); font-size:.85rem; margin-top:5px;">Strategically located in Central Germany (Thuringia) with direct transit connectivity to major tech hubs across Germany and the European Union.</p>
+    <p style="color:var(--muted); font-size:.85rem; margin-top:5px;" data-i18n="loc_text">Strategically located in Central Germany with direct transit connectivity to major tech hubs across Germany and the European Union.</p>
     <div class="map">
       <svg viewBox="0 0 400 250">
         <path class="country" d="M 120,40 L 180,30 L 260,50 L 310,110 L 290,190 L 210,220 L 130,200 L 90,130 Z" />
@@ -483,29 +505,110 @@
   </div>
 </div>
 
+<!-- Main Resume Selection Modal -->
 <div class="modal" id="resumeModal">
   <div class="modal-card glass">
     <button class="close" id="closeResumeModal"><i data-lucide="x"></i></button>
-    <div class="eyebrow">INTERACTIVE RESUME EXPORT</div>
-    <h2>Select Format</h2>
-    <p style="color:var(--muted); font-size:.85rem; margin-top:5px;">Choose the resume representation optimized for your review format or ATS parser.</p>
+    <div class="eyebrow" data-i18n="res_eyebrow">INTERACTIVE RESUME EXPORT</div>
+    <h2 data-i18n="res_title">Select Format</h2>
+    <p style="color:var(--muted); font-size:.85rem; margin-top:5px;" data-i18n="res_desc">Choose the resume representation optimized for your review format or ATS parser.</p>
     <div class="resume-grid">
-      <button class="resume-option" onclick="downloadResume('pdf')">
+      <a class="resume-option" href="https://drive.google.com/file/d/1IAE-XYlIW_9TwzvjZiiQZHuUhtuBA5UR/view?usp=sharing" target="_blank" rel="noopener">
         <i data-lucide="file-text" style="color:var(--blue); margin-bottom:8px;"></i>
-        <b>Full Resume (PDF)</b>
-        <span>Complete multi-page history and technical stack</span>
-      </button>
-      <button class="resume-option" onclick="downloadResume('summary')">
+        <b data-i18n="opt1_t">Full Resume (PDF)</b>
+        <span data-i18n="opt1_d">Complete multi-page history and technical stack</span>
+      </a>
+      <button class="resume-option" onclick="openExecutiveSummary()">
         <i data-lucide="award" style="color:var(--cyan); margin-bottom:8px;"></i>
-        <b>Executive Summary</b>
-        <span>1-page high-impact performance & metrics sheet</span>
+        <b data-i18n="opt2_t">Executive Summary</b>
+        <span data-i18n="opt2_d">1-page high-impact performance & metrics sheet</span>
       </button>
-      <button class="resume-option" onclick="downloadResume('ats')">
+      <button class="resume-option" onclick="openAtsText()">
         <i data-lucide="code" style="color:var(--violet); margin-bottom:8px;"></i>
-        <b>ATS Plain Text</b>
-        <span>Unformatted text optimized for recruiters' automated systems</span>
+        <b data-i18n="opt3_t">ATS Plain Text</b>
+        <span data-i18n="opt3_d">Unformatted text optimized for recruiters' automated systems</span>
       </button>
     </div>
+  </div>
+</div>
+
+<!-- Executive Summary Modal -->
+<div class="modal" id="summaryModal">
+  <div class="modal-card glass">
+    <button class="close" onclick="closeModal('summaryModal')"><i data-lucide="x"></i></button>
+    <div class="eyebrow" data-i18n="sum_eyebrow">EXECUTIVE SUMMARY</div>
+    <h2>Venkata Dinesh Avvaru</h2>
+    <p style="color:var(--blue); font-weight:700; font-size:.85rem; margin-bottom:15px;" data-i18n="sum_sub">Senior Data Analyst & BI Specialist | Weimar, Germany | avdinesh.3012@gmail.com</p>
+    
+    <div style="font-size:.85rem; line-height:1.6; color:var(--text);">
+      <p data-i18n="sum_p1"><strong>Executive Profile:</strong> Data Analytics & BI Engineering professional with <strong>5+ years of experience</strong> building governed BI systems, automated ETL pipelines, and enterprise KPI frameworks. Proven track record in reducing manual reporting cycles by up to 50% through automated orchestration (SQL, SSIS, Python, n8n, Power Automate).</p>
+      
+      <h3 style="font-size:1rem; margin-top:15px; color:var(--cyan);" data-i18n="sum_h2">Core Metrics & Impact</h3>
+      <ul style="padding-left:18px; margin-top:5px;">
+        <li data-i18n="sum_m1"><strong>50% Reduction</strong> in manual reporting turnaround by consolidating 11+ advertising platforms.</li>
+        <li data-i18n="sum_m2"><strong>35% Increase</strong> in self-service BI dashboard adoption across business stakeholders.</li>
+        <li data-i18n="sum_m3"><strong>100% Data Consistency</strong> maintained through automated reconciliation frameworks and SOPs.</li>
+      </ul>
+
+      <h3 style="font-size:1rem; margin-top:15px; color:var(--cyan);" data-i18n="sum_h3">Key Capabilities</h3>
+      <p data-i18n="sum_cap">Power BI (DAX, Star Schema, RLS), SQL Query Optimization, Python (Pandas, Selenium, Scikit-Learn), ETL Engineering, Process Governance (BRD/FRD/SOPs).</p>
+    </div>
+  </div>
+</div>
+
+<!-- ATS Plain Text Modal -->
+<div class="modal" id="atsModal">
+  <div class="modal-card glass">
+    <button class="close" onclick="closeModal('atsModal')"><i data-lucide="x"></i></button>
+    <div class="eyebrow" data-i18n="ats_eyebrow">ATS PLAIN TEXT FORMAT</div>
+    <h2 data-i18n="ats_title">Plain Text Version</h2>
+    <p style="color:var(--muted); font-size:.8rem;" data-i18n="ats_desc">Copy the unformatted text below for direct pasting into recruiter application forms and ATS text parsers.</p>
+    
+    <div class="view-content-box" id="atsTextContent">
+VENKATA DINESH AVVARU
+Senior Data Analyst & BI Specialist
+Location: Weimar, Germany (99425)
+Email: avdinesh.3012@gmail.com
+LinkedIn: https://www.linkedin.com/in/dinesh-a-v-323b97309/
+GitHub: https://github.com/Dinesh949?tab=repositories
+Work Authorization: EU Work Authorized (Open to Relocation)
+Languages: English (Fluent), German (B1/B2)
+
+SUMMARY
+Data Analytics & BI Engineering professional with 5+ years of experience building governed BI systems, automated ETL pipelines, and enterprise KPI frameworks. Reduced manual reporting cycles by up to 50% through automated orchestration (SQL, SSIS, Python, n8n, Power Automate). Expert in translating business requirements into structured data models, auditable metrics, and decision-ready dashboards.
+
+SKILLS & COMPETENCIES
+- BI & Analytics: Power BI (DAX, Power Query, Data Modeling, RLS), Tableau, Datorama, Excel (VBA/Macros)
+- Data Engineering & Cloud: SQL (Complex Queries, Optimization, CTEs), Python (Pandas, NumPy, Scikit-Learn), Azure, Microsoft Fabric, SSIS, Alteryx
+- Automation & ETL: Pipeline Design, n8n, Power Automate, Automated Data Reconciliations
+- Governance: BRD/FRD Drafting, SOP Creation, Data Quality Auditing, KPI Monitoring
+
+PROFESSIONAL EXPERIENCE
+
+Senior Associate – BI Reporting & Insights | GUS Education India (Jan 2025 – Jun 2026)
+- Rebuilt self-service BI adoption across marketing, admissions, and operations, increasing active dashboard usage by 35%.
+- Authored BRDs, SOPs, and governance frameworks; built automated validation checks in Power Query.
+
+Senior Analyst – Business Intelligence | Omnicom Media Group (Oct 2023 – Apr 2024)
+- Designed a unified KPI model consolidating 11+ advertising platforms into one Power BI/Datorama executive dashboard.
+- Led international requirements-gathering workshops with client leadership to establish reporting SLAs.
+
+Project Engineer – ETL & Dashboard Development | JLL (Aug 2022 – Sep 2023)
+- Built automated SQL/SSIS/Alteryx pipelines powering real-time Power BI dashboards, cutting manual reporting effort by 50%.
+
+Project Engineer – Data & Operations | NCC Limited (Mar 2021 – Aug 2022)
+- Built Excel VBA macros and automated Power BI reporting for recurring KPI requests.
+
+Assistant Engineer – PMO Planning & Coordination | Aparna Constructions (Oct 2018 – Mar 2021)
+- Coordinated PMO milestone tracking and cross-functional planning across structural and engineering teams.
+
+EDUCATION & CERTIFICATIONS
+- Bachelor of Engineering (B.E.), Civil Engineering – JNTU Anantapur (2014 – 2018)
+- Advanced Certification in Data Science & AI – Intellipaat / IIT Madras (2020 – 2021)
+- Power BI Data Analytics 2.0 Certification (2021)
+- HackerRank SQL Certification (Intermediate) (2021)
+    </div>
+    <button class="btn primary" style="margin-top:15px; width:100%; justify-content:center;" onclick="copyAtsText()"><i data-lucide="copy"></i> <span data-i18n="btn_copy">Copy Plain Text to Clipboard</span></button>
   </div>
 </div>
 
@@ -513,6 +616,168 @@
 
 <script>
   lucide.createIcons();
+
+  // Dictionary for EN / DE Translations
+  const translations = {
+    en: {
+      role_title: "Data Analyst · BI · Reporting",
+      loc_weimar: "Weimar, Germany",
+      clock_label: "Germany time · CEST/CET",
+      open_opps: "Open to opportunities",
+      reloc_label: "Germany · Open to relocation",
+      nav_home: "Home", nav_work: "Work", nav_projects: "Projects", nav_skills: "Skills", nav_career: "Career", nav_exp: "Experience", nav_contact: "Contact",
+      hero_eyebrow: "DATA · BI · ANALYTICS ENGINEERING",
+      hero_title: "Turning business data into <span>decision-ready insight.</span>",
+      hero_lead: "Senior Data Analyst and Business Intelligence professional focused on Power BI, SQL, Python, DAX, data modeling, ETL and reporting automation. I build analytics that are useful, explainable and easy for stakeholders to act on.",
+      btn_explore: "Explore interactive work",
+      btn_resume: "Interactive Resume",
+      btn_contact: "Contact me",
+      m_years: "Years experience", m_platforms: "Data platforms integrated", m_reduction: "Manual reporting reduction", m_adoption: "Self-service BI adoption",
+      p_eyebrow: "SELECTED WORK", p_title: "Interactive portfolio", p_desc: "Explore the work by capability. Chart values represent interactive analytics workflows and portfolio data models.",
+      f_all: "All", f_ml: "Machine Learning", f_gov: "Governance",
+      p1_peak: "Peak Hours", p1_off: "Off-Peak", p1_staffed: "Staffed",
+      p1_title: "Healthcare BI Pipeline & Capacity Analytics",
+      p1_desc: "Interactive portfolio analysis for emergency-room patient influx and wait-time patterns with a governed semantic model, dynamic DAX measures and data-quality checks.",
+      p2_title: "Multi-Platform Marketing KPI Governance",
+      p2_desc: "Consolidated campaign data across 11+ advertising channels into unified KPI reporting, automated reconciliation checks, and executive dashboards.",
+      p3_title: "Automated Web Ingestion Pipeline",
+      p3_desc: "Python Selenium automation for scraping, cleaning, and standardizing unstructured web data into analytics-ready database schemas.",
+      p4_title: "Predictive Asset Valuation Engine",
+      p4_desc: "Regression-based valuation model with feature engineering, cross-validation, and containerized Python workflow for API deployment.",
+      view_repo: "View repository",
+      sk_eyebrow: "TECHNICAL DEPTH", sk_title: "Analytics capability map", sk_desc: "Click a capability to expand the practical depth behind the headline skill.",
+      radar_label: "COMPETENCY RADAR", lbl_depth: "Depth:",
+      sk1_sub: "Advanced · DAX · semantic models", sk1_det: "Star schema, time intelligence, calculated tables/measures, validation and dashboard design.",
+      sk2_sub: "Advanced · analytical modeling", sk2_det: "Context transition, CALCULATE patterns, time intelligence, filter propagation and reusable measures.",
+      sk3_sub: "Advanced · analytics & ETL", sk3_det: "Joins, CTEs, aggregations, transformations, validation and analytics-ready datasets.",
+      sk4_sub: "Intermediate/Advanced · data workflows", sk4_det: "Pandas, automation, Selenium, preprocessing, exploratory analysis and ML workflows.",
+      sk5_sub: "Advanced · transformation", sk5_det: "Reusable transformations, data profiling, type handling, merges, appends and QA checks.",
+      sk6_sub: "Advanced · reporting automation", sk6_det: "Advanced formulas, Power Query, macros, automated recurring reporting and operational trackers.",
+      sk7_sub: "Automation · distribution", sk7_det: "Automated report distribution, scheduled workflows and process handoffs across systems.",
+      sk8_sub: "KPI consistency · QA · SOPs", sk8_det: "Reconciliation, validation, KPI definitions, BRD/FRD creation, SOPs and stakeholder enablement.",
+      exp_eyebrow: "CAREER JOURNEY", exp_title: "Experience timeline", exp_desc: "Click each role to reveal the work and outcomes to emphasize during recruiter screening.",
+      c1_sum: "Power BI, SQL, Python, CRM reporting, automation and stakeholder analytics.", c1_det: "Rebuilt self-service BI adoption across marketing, admissions, and operations, increasing active dashboard usage by 35%. Authored BRDs, SOPs, and governance frameworks; built automated validation checks in Power Query.",
+      c2_sum: "Unified KPI models, marketing platform integration, and executive reporting.", c2_det: "Designed a unified KPI model consolidating 11+ advertising platforms into one Power BI/Datorama executive dashboard. Led international requirements-gathering workshops with client leadership to establish reporting SLAs.",
+      c3_sum: "SQL, SSIS pipelines, Power BI interactive reporting, and data QA.", c3_det: "Built automated SQL/SSIS/Alteryx pipelines powering real-time Power BI dashboards, establishing standard data quality protocols and cutting manual reporting effort by 50%.",
+      c4_sum: "Excel VBA automation, operational reporting, and project tracking.", c4_det: "Built Excel VBA macros and automated Power BI reporting for recurring KPI requests, accelerating operational cycle times and improving tracking accuracy.",
+      c5_sum: "Milestone tracking, resource allocation, and technical reporting.", c5_det: "Coordinated PMO milestone tracking and cross-functional planning across structural and engineering teams, laying the foundation for systematic data management and reporting.",
+      btn_expand: "Expand role +",
+      proc_eyebrow: "ANALYTICAL WORKFLOW", proc_title: "End-to-End Delivery Process",
+      st1_t: "Requirements", st1_s: "KPI Alignment",
+      st2_t: "Data Ingestion", st2_s: "SQL / Pipelines",
+      st3_t: "Data Modeling", st3_s: "Star Schema",
+      st4_t: "DAX / Metrics", st4_s: "Logic & Formulas",
+      st5_t: "Dashboard UI", st5_s: "Self-Service UX",
+      st6_t: "QA & Governance", st6_s: "Reconciliation",
+      st7_t: "Enablement", st7_s: "SOPs & Adoption",
+      cnt_eyebrow: "GET IN TOUCH", cnt_title: "Let's discuss opportunities", cnt_desc: "Open to Senior Data Analyst, Business Intelligence, and Analytics Engineering roles in Germany and across the EU.",
+      cnt_head: "Direct Contact & Relocation", cnt_text: "Based in Weimar, Germany. Ready to contribute to team goals with clear data insights, streamlined pipelines, and self-service BI environments.",
+      cnt_loc: "Weimar, Germany (99425 · EU Mobility)", cnt_lang: "English (Fluent), German (B1/B2)",
+      lbl_name: "YOUR NAME", lbl_email: "YOUR EMAIL", lbl_msg: "MESSAGE", btn_send: "Send Message",
+      ft_copy: "© 2026 Venkata Dinesh Avvaru · Senior Data Analyst & BI Specialist", ft_tech: "Hosted on GitHub Pages · Pure Vanilla HTML/CSS/JS",
+      loc_eyebrow: "LOCATION & MOBILITY", loc_text: "Strategically located in Central Germany with direct transit connectivity to major tech hubs across Germany and the European Union.",
+      res_eyebrow: "INTERACTIVE RESUME EXPORT", res_title: "Select Format", res_desc: "Choose the resume representation optimized for your review format or ATS parser.",
+      opt1_t: "Full Resume (PDF)", opt1_d: "Complete multi-page history and technical stack",
+      opt2_t: "Executive Summary", opt2_d: "1-page high-impact performance & metrics sheet",
+      opt3_t: "ATS Plain Text", opt3_d: "Unformatted text optimized for recruiters' automated systems",
+      sum_eyebrow: "EXECUTIVE SUMMARY", sum_sub: "Senior Data Analyst & BI Specialist | Weimar, Germany | avdinesh.3012@gmail.com",
+      sum_p1: "<strong>Executive Profile:</strong> Data Analytics & BI Engineering professional with <strong>5+ years of experience</strong> building governed BI systems, automated ETL pipelines, and enterprise KPI frameworks. Proven track record in reducing manual reporting cycles by up to 50% through automated orchestration (SQL, SSIS, Python, n8n, Power Automate).",
+      sum_h2: "Core Metrics & Impact", sum_m1: "<strong>50% Reduction</strong> in manual reporting turnaround by consolidating 11+ advertising platforms.", sum_m2: "<strong>35% Increase</strong> in self-service BI dashboard adoption across business stakeholders.", sum_m3: "<strong>100% Data Consistency</strong> maintained through automated reconciliation frameworks and SOPs.",
+      sum_h3: "Key Capabilities", sum_cap: "Power BI (DAX, Star Schema, RLS), SQL Query Optimization, Python (Pandas, Selenium, Scikit-Learn), ETL Engineering, Process Governance (BRD/FRD/SOPs).",
+      ats_eyebrow: "ATS PLAIN TEXT FORMAT", ats_title: "Plain Text Version", ats_desc: "Copy the unformatted text below for direct pasting into recruiter application forms and ATS text parsers.", btn_copy: "Copy Plain Text to Clipboard"
+    },
+    de: {
+      role_title: "Senior Datenanalyst · BI · Reporting",
+      loc_weimar: "Weimar, Deutschland",
+      clock_label: "Deutsche Zeit · MESZ/MEZ",
+      open_opps: "Offen für neue Stellen",
+      reloc_label: "Deutschland · Umzugsbereit",
+      nav_home: "Start", nav_work: "Arbeit", nav_projects: "Projekte", nav_skills: "Fähigkeiten", nav_career: "Karriere", nav_exp: "Erfahrung", nav_contact: "Kontakt",
+      hero_eyebrow: "DATEN · BI · ANALYTICS ENGINEERING",
+      hero_title: "Transformation von Daten in <span>entscheidungsreife Einblicke.</span>",
+      hero_lead: "Senior Data Analyst & BI-Spezialist mit Fokus auf Power BI, SQL, Python, DAX, Datenmodellierung und ETL-Automatisierung. Ich erstelle verständliche und direkt nutzbare Analysen für Entscheider.",
+      btn_explore: "Projekte entdecken",
+      btn_resume: "Interaktiver Lebenslauf",
+      btn_contact: "Kontaktieren",
+      m_years: "Jahre Erfahrung", m_platforms: "Integrierte Datenplattformen", m_reduction: "Reduzierung mannl. Reports", m_adoption: "Self-Service BI Nutzung",
+      p_eyebrow: "AUSGEWÄHLTE ARBEITEN", p_title: "Interaktives Portfolio", p_desc: "Filtern Sie nach Kompetenz. Die Diagramme zeigen interaktive Workflows und Datenmodelle.",
+      f_all: "Alle", f_ml: "Maschinelles Lernen", f_gov: "Governance",
+      p1_peak: "Spitzenzeiten", p1_off: "Nebenzeiten", p1_staffed: "Personalisiert",
+      p1_title: "Gesundheits-BI & Kapazitätsanalytik",
+      p1_desc: "Analyse von Patientenströmen und Wartezeiten in der Notaufnahme mit strukturiertem Datenmodell, dynamischen DAX-Kennzahlen und QA-Prüfungen.",
+      p2_title: "Multi-Plattform Marketing KPI Governance",
+      p2_desc: "Konsolidierung von 11+ Werbekanälen in ein einheitliches KPI-Reporting mit automatisierten Abstimmungsprüfungen und Management-Dashboards.",
+      p3_title: "Automatisierte Web-Daten-Pipeline",
+      p3_desc: "Python-Selenium-Automatisierung zum Scrapen, Bereinigen und Laden unstrukturierter Webdaten in datenbankbereite Schemas.",
+      p4_title: "Prädiktive Asset-Bewertungs-Engine",
+      p4_desc: "Regressionsbasiertes Bewertungsmodell mit Feature Engineering, Kreuzvalidierung und containerisiertem Python-API-Workflow.",
+      view_repo: "Repository ansehen",
+      sk_eyebrow: "TECHNISCHE TIEFE", sk_title: "Kompetenzkarte Analytik", sk_desc: "Klicken Sie auf eine Fähigkeit, um detaillierte Einblicke zu erhalten.",
+      radar_label: "KOMPETENZ-RADAR", lbl_depth: "Tiefe:",
+      sk1_sub: "Fortgeschritten · DAX · Semantik", sk1_det: "Sternschema, Zeitintelligenz, berechnete Tabellen/Kennzahlen und Dashboard-Design.",
+      sk2_sub: "Fortgeschritten · Datenmodellierung", sk2_det: "Kontextübergang, CALCULATE-Muster, Zeitintelligenz und wiederverwendbare Kennzahlen.",
+      sk3_sub: "Fortgeschritten · Analytik & ETL", sk3_det: "Joins, CTEs, Aggregationen, Transformationen und datenbankbereite Datensätze.",
+      sk4_sub: "Mittel/Fortgeschritten · Daten-Workflows", sk4_det: "Pandas, Automatisierung, Selenium, Bereinigung und ML-Workflows.",
+      sk5_sub: "Fortgeschritten · Transformation", sk5_det: "Wiederverwendbare Transformationen, Datenprofilierung, Typenverarbeitung und QA-Prüfungen.",
+      sk6_sub: "Fortgeschritten · Berichts-Automatisierung", sk6_det: "Komplexe Formeln, Power Query, Makros und automatisierte Berichterstattung.",
+      sk7_sub: "Automatisierung · Verteilung", sk7_det: "Automatisierter Berichtsversand, geplante Workflows und Systemübergaben.",
+      sk8_sub: "KPI-Konsistenz · QA · SOPs", sk8_det: "Datenabstimmung, Validierung, KPI-Definitionen, BRD/FRD-Erstellung und SOPs.",
+      exp_eyebrow: "KARRIEREPFAD", exp_title: "Berufserfahrung", exp_desc: "Klicken Sie auf eine Position, um Details und Erfolge einzublenden.",
+      c1_sum: "Power BI, SQL, Python, CRM-Reporting, Automatisierung und Stakeholder-Analytik.", c1_det: "Steigerung der Self-Service-BI-Nutzung in Marketing und Betrieb um 35%. Erstellung von BRDs, SOPs und automatisierten Power Query-Validierungen.",
+      c2_sum: "Einheitliche KPI-Modelle, Marketing-Integration und Management-Reporting.", c2_det: "Konsolidierung von 11+ Werbeplattformen in ein zentrales Power BI Dashboard. Leitung internationaler Anforderungsworkshops.",
+      c3_sum: "SQL, SSIS-Pipelines, interaktives Power BI Reporting und Daten-QA.", c3_det: "Entwicklung automatisierter SQL/SSIS-Pipelines für Echtzeit-Dashboards. Reduzierung des manuellen Aufwands um 50%.",
+      c4_sum: "Excel VBA-Automatisierung, operatives Reporting und Projektverfolgung.", c4_det: "Erstellung von VBA-Makros und automatisierten Power BI-Berichten für wiederkehrende KPI-Anfragen.",
+      c5_sum: "Meilensteinverfolgung, Ressourcenplanung und technisches Reporting.", c5_det: "Koordination der PMO-Meilensteinverfolgung über interdisziplinäre Ingenieurteams hinweg.",
+      btn_expand: "Rolle ausklappen +",
+      proc_eyebrow: "ANALYTISCHER WORKFLOW", proc_title: "End-to-End Lieferprozess",
+      st1_t: "Anforderungen", st1_s: "KPI-Abstimmung",
+      st2_t: "Datenintegration", st2_s: "SQL / Pipelines",
+      st3_t: "Datenmodellierung", st3_s: "Sternschema",
+      st4_t: "DAX / Metriken", st4_s: "Logik & Formeln",
+      st5_t: "Dashboard UI", st5_s: "Self-Service UX",
+      st6_t: "QA & Governance", st6_s: "Datenabstimmung",
+      st7_t: "Befähigung", st7_s: "SOPs & Adoption",
+      cnt_eyebrow: "KONTAKT", cnt_title: "Lassen Sie uns sprechen", cnt_desc: "Offen für Positionen als Senior Data Analyst, BI Specialist und Analytics Engineer in Deutschland und der EU.",
+      cnt_head: "Direktkontakt & Mobilität", cnt_text: "Wohnhaft in Weimar, Deutschland. Bereit, Teams mit klaren Dateneinblicken und effizienten BI-Pipelines zu unterstützen.",
+      cnt_loc: "Weimar, Deutschland (99425 · EU-Mobilität)", cnt_lang: "Englisch (Fließend), Deutsch (B1/B2)",
+      lbl_name: "IHR NAME", lbl_email: "IHRE E-MAIL", lbl_msg: "NACHRICHT", btn_send: "Nachricht senden",
+      ft_copy: "© 2026 Venkata Dinesh Avvaru · Senior Data Analyst & BI Specialist", ft_tech: "Gehostet auf GitHub Pages · Reines Vanilla HTML/CSS/JS",
+      loc_eyebrow: "STANDORT & MOBILITÄT", loc_text: "Strategisch günstig in Mitteldeutschland gelegen mit hervorragender Anbindung an alle großen Tech-Hubs.",
+      res_eyebrow: "INTERAKTIVER LEBENSLAUF-EXPORT", res_title: "Format auswählen", res_desc: "Wählen Sie die optimale Darstellung für Ihre Prüfung oder ATS-Systeme.",
+      opt1_t: "Vollständiger Lebenslauf (PDF)", opt1_d: "Komplette Historie und technischer Stack",
+      opt2_t: "Management-Zusammenfassung", opt2_d: "1-seitige Übersicht der wichtigsten Erfolge & Kennzahlen",
+      opt3_t: "ATS-Reintext", opt3_d: "Unformatierter Text, optimiert für automatisierte Bewerbersysteme",
+      sum_eyebrow: "MANAGEMENT-ZUSAMMENFASSUNG", sum_sub: "Senior Data Analyst & BI Specialist | Weimar, Deutschland | avdinesh.3012@gmail.com",
+      sum_p1: "<strong>Profil:</strong> Datenanalyst & BI-Spezialist mit <strong>über 5 Jahren Erfahrung</strong> beim Aufbau von BI-Systemen, ETL-Pipelines und KPI-Frameworks. Nachweisbare Reduzierung manueller Berichtszyklen um bis zu 50% durch Automatisierung.",
+      sum_h2: "Kernerfolge & Wirkung", sum_m1: "<strong>50% Reduzierung</strong> des manuellen Berichtsaufwands durch Konsolidierung von 11+ Plattformen.", sum_m2: "<strong>35% Steigerung</strong> der Nutzung von Self-Service-Dashboards.", sum_m3: "<strong>100% Datenkonsistenz</strong> durch automatisierte Abstimmungsrahmen und SOPs.",
+      sum_h3: "Kernkompetenzen", sum_cap: "Power BI (DAX, Sternschema, RLS), SQL-Optimierung, Python (Pandas, Selenium, Scikit-Learn), ETL-Engineering, Prozess-Governance.",
+      ats_eyebrow: "ATS-REINTEXT-FORMAT", ats_title: "Reintext-Version", ats_desc: "Kopieren Sie den unformatierten Text unten für die direkte Eingabe in Bewerberformulare.", btn_copy: "Text in Zwischenablage kopieren"
+    }
+  };
+
+  const langToggleBtn = document.getElementById('langToggle');
+  let currentLang = localStorage.getItem('lang') || 'en';
+
+  function applyLanguage(lang) {
+    document.documentElement.setAttribute('data-lang', lang);
+    langToggleBtn.textContent = lang === 'en' ? 'DE' : 'EN';
+    
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (translations[lang] && translations[lang][key]) {
+        el.innerHTML = translations[lang][key];
+      }
+    });
+
+    localStorage.setItem('lang', lang);
+  }
+
+  langToggleBtn.addEventListener('click', () => {
+    currentLang = currentLang === 'en' ? 'de' : 'en';
+    applyLanguage(currentLang);
+  });
+
+  applyLanguage(currentLang);
 
   const themeToggleBtn = document.getElementById('themeToggle');
   const savedTheme = localStorage.getItem('theme') || 'dark';
@@ -551,9 +816,32 @@
   resumeBtn.addEventListener('click', () => resumeModal.classList.add('show'));
   closeResumeModal.addEventListener('click', () => resumeModal.classList.remove('show'));
 
+  function closeModal(id) {
+    document.getElementById(id).classList.remove('show');
+  }
+
+  function openExecutiveSummary() {
+    resumeModal.classList.remove('show');
+    document.getElementById('summaryModal').classList.add('show');
+  }
+
+  function openAtsText() {
+    resumeModal.classList.remove('show');
+    document.getElementById('atsModal').classList.add('show');
+  }
+
+  function copyAtsText() {
+    const text = document.getElementById('atsTextContent').innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      showToast(currentLang === 'en' ? "ATS text copied to clipboard!" : "ATS-Text in Zwischenablage kopiert!");
+    });
+  }
+
   window.addEventListener('click', (e) => {
     if (e.target === locationModal) locationModal.classList.remove('show');
     if (e.target === resumeModal) resumeModal.classList.remove('show');
+    if (e.target === document.getElementById('summaryModal')) closeModal('summaryModal');
+    if (e.target === document.getElementById('atsModal')) closeModal('atsModal');
   });
 
   document.getElementById('whatsappBtn').addEventListener('click', () => {
@@ -590,7 +878,12 @@
     if(btn) {
       btn.addEventListener('click', () => {
         item.classList.toggle('open');
-        btn.textContent = item.classList.contains('open') ? 'Collapse role -' : 'Expand role +';
+        const isOpen = item.classList.contains('open');
+        if(currentLang === 'en') {
+          btn.textContent = isOpen ? 'Collapse role -' : 'Expand role +';
+        } else {
+          btn.textContent = isOpen ? 'Rolle einklappen -' : 'Rolle ausklappen +';
+        }
       });
     }
   });
@@ -607,7 +900,7 @@
 
   function handleFormSubmit(e) {
     e.preventDefault();
-    showToast("Thank you! Your message has been sent.");
+    showToast(currentLang === 'en' ? "Thank you! Your message has been sent." : "Vielen Dank! Ihre Nachricht wurde gesendet.");
     document.getElementById('contactForm').reset();
   }
 
@@ -616,11 +909,6 @@
     toast.textContent = msg;
     toast.classList.add('show');
     setTimeout(() => toast.classList.remove('show'), 3500);
-  }
-
-  function downloadResume(type) {
-    resumeModal.classList.remove('show');
-    showToast(`Downloading ${type.toUpperCase()} Resume option...`);
   }
 
   const chartTextColor = () => document.documentElement.getAttribute('data-theme') === 'light' ? '#5c7088' : '#91a4bb';
